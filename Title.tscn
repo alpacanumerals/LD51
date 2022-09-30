@@ -46,7 +46,7 @@ margin_left = 171.0
 margin_right = 439.0
 margin_bottom = 20.0
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="NewGameButton" type="TextureButton" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 margin_right = 64.0
 margin_bottom = 20.0
 texture_normal = ExtResource( 2 )
