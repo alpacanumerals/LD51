@@ -16,7 +16,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Resolution="*res://autoload/resolution.gd"
+resolution="*res://autoload/resolution.gd"
+switcher="*res://autoload/switcher.gd"
 
 [display]
 

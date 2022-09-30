@@ -7,7 +7,12 @@ func _ready():
 #func _process(delta):
 #    pass
 
-func _on_TextureButton3_pressed():
+func _on_OptionsButton_pressed():
+    switcher.playClick()
+    switcher.switchScene("res://Options.tscn")
+    
+func _on_FullScreenButton_pressed():
+    switcher.playClick()
     if OS.window_fullscreen == false:
         OS.set_window_fullscreen(true)
     else:
