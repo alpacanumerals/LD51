@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://sprites/witch_bl/witch_bl_03.png" type="Texture" id=1]
 [ext_resource path="res://sprites/witch_bl/witch_bl_04.png" type="Texture" id=2]
@@ -12,13 +12,64 @@
 [ext_resource path="res://sprites/witch_bl/witch_bl_10.png" type="Texture" id=10]
 [ext_resource path="res://sprites/witch_bl/witch_bl_02.png" type="Texture" id=11]
 [ext_resource path="res://sprites/witch_bl/witch_bl_01.png" type="Texture" id=12]
+[ext_resource path="res://sprites/witch_br/witch_br_03.png" type="Texture" id=13]
 [ext_resource path="res://player/playerbody.gd" type="Script" id=14]
+[ext_resource path="res://sprites/witch_fr/witch_fr_03.png" type="Texture" id=15]
+[ext_resource path="res://sprites/witch_fr/witch_fr_09.png" type="Texture" id=16]
+[ext_resource path="res://sprites/witch_fl/witch_fl_01.png" type="Texture" id=17]
+[ext_resource path="res://sprites/witch_br/witch_br_09.png" type="Texture" id=18]
+[ext_resource path="res://sprites/witch_fl/witch_fl_04.png" type="Texture" id=19]
+[ext_resource path="res://sprites/witch_fl/witch_fl_10.png" type="Texture" id=20]
+[ext_resource path="res://sprites/witch_fr/witch_fr_04.png" type="Texture" id=21]
+[ext_resource path="res://sprites/witch_fl/witch_fl_09.png" type="Texture" id=22]
+[ext_resource path="res://sprites/witch_fr/witch_fr_10.png" type="Texture" id=23]
+[ext_resource path="res://sprites/witch_fr/witch_fr_11.png" type="Texture" id=24]
+[ext_resource path="res://sprites/witch_br/witch_br_12.png" type="Texture" id=25]
+[ext_resource path="res://sprites/witch_br/witch_br_01.png" type="Texture" id=26]
+[ext_resource path="res://sprites/witch_br/witch_br_02.png" type="Texture" id=27]
+[ext_resource path="res://sprites/witch_br/witch_br_10.png" type="Texture" id=28]
+[ext_resource path="res://sprites/witch_br/witch_br_11.png" type="Texture" id=29]
+[ext_resource path="res://sprites/witch_br/witch_br_08.png" type="Texture" id=30]
+[ext_resource path="res://sprites/witch_fl/witch_fl_02.png" type="Texture" id=31]
+[ext_resource path="res://sprites/witch_fl/witch_fl_06.png" type="Texture" id=32]
+[ext_resource path="res://sprites/witch_fl/witch_fl_08.png" type="Texture" id=33]
+[ext_resource path="res://sprites/witch_fl/witch_fl_11.png" type="Texture" id=34]
+[ext_resource path="res://sprites/witch_fr/witch_fr_01.png" type="Texture" id=35]
+[ext_resource path="res://sprites/witch_fr/witch_fr_05.png" type="Texture" id=36]
+[ext_resource path="res://sprites/witch_br/witch_br_05.png" type="Texture" id=37]
+[ext_resource path="res://sprites/witch_br/witch_br_06.png" type="Texture" id=38]
+[ext_resource path="res://sprites/witch_br/witch_br_04.png" type="Texture" id=39]
+[ext_resource path="res://sprites/witch_fl/witch_fl_05.png" type="Texture" id=40]
+[ext_resource path="res://sprites/witch_br/witch_br_07.png" type="Texture" id=41]
+[ext_resource path="res://sprites/witch_fl/witch_fl_07.png" type="Texture" id=42]
+[ext_resource path="res://sprites/witch_fr/witch_fr_07.png" type="Texture" id=43]
+[ext_resource path="res://sprites/witch_fr/witch_fr_02.png" type="Texture" id=44]
+[ext_resource path="res://sprites/witch_fl/witch_fl_12.png" type="Texture" id=45]
+[ext_resource path="res://sprites/witch_fr/witch_fr_06.png" type="Texture" id=46]
+[ext_resource path="res://sprites/witch_fr/witch_fr_08.png" type="Texture" id=47]
+[ext_resource path="res://sprites/witch_fl/witch_fl_03.png" type="Texture" id=48]
+[ext_resource path="res://sprites/witch_fr/witch_fr_12.png" type="Texture" id=49]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "back_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 27 ), ExtResource( 13 ), ExtResource( 39 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 41 ), ExtResource( 30 ), ExtResource( 18 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "back_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 31 ), ExtResource( 48 ), ExtResource( 19 ), ExtResource( 40 ), ExtResource( 32 ), ExtResource( 42 ), ExtResource( 33 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 34 ), ExtResource( 45 ) ],
+"loop": true,
+"name": "front_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 35 ), ExtResource( 44 ), ExtResource( 15 ), ExtResource( 21 ), ExtResource( 36 ), ExtResource( 46 ), ExtResource( 43 ), ExtResource( 47 ), ExtResource( 16 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 49 ) ],
+"loop": true,
+"name": "front_right",
 "speed": 5.0
 } ]
 
@@ -31,7 +82,7 @@ script = ExtResource( 14 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "back_left"
+animation = "front_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
