@@ -21,20 +21,22 @@ var block_2 = [[0, 0, 0, 0, 0, 0, 0, 0],
 var block_3 = [[0, 0, 0, 0, 0, 0, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 0],
                [0, 0, 2, 2, 2, 2, 0, 0],
-               [0, 0, 2, 2, 2, 2, 0, 0],
-               [0, 0, 2, 2, 2, 2, 0, 0],
+               [0, 0, 2, 1, 1, 2, 0, 0],
+               [0, 0, 2, 1, 1, 2, 0, 0],
                [0, 0, 2, 2, 2, 2, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 0]]
-
-var blocks = [block_3, block_1, block_2, block_3, block_1, block_2]
 
 func _ready():
     draw_map()
 
 func draw_map():
+    #var blocks = [block_3, block_1, block_2, block_3, block_1, block_2]
+    
+    var block_options = [block_1, block_2, block_3]
+    
     for block_number in range(6):
-        set_block(block_number, blocks[block_number])
+        set_block(block_number, block_options[randi() % 3])
     set_outer_wall()
 
 # block_number is an integer from 0 to 5 defining the position on the 3x2 grid of 8x8 blocks

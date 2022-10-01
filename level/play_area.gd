@@ -7,8 +7,7 @@ var mob_start = Vector2(531, 264)
 var tentacle = preload("res://mobs/Tentacle.tscn")
 
 func _ready():
-    reset_player()
-    reset_mobs()
+    reset_map()
 
 func _on_PlayerRoot_shoot(bullet, direction, location):
     var b = bullet.instance()
@@ -20,6 +19,7 @@ func reset_map():
     reset_player()
     reset_mobs()
     remove_bullets()
+    $TileMap.draw_map()
     # reset walls
 
 func reset_player():
