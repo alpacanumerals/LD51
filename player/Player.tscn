@@ -12,7 +12,7 @@
 [ext_resource path="res://sprites/witch_bl/witch_bl_10.png" type="Texture" id=10]
 [ext_resource path="res://sprites/witch_bl/witch_bl_02.png" type="Texture" id=11]
 [ext_resource path="res://sprites/witch_bl/witch_bl_01.png" type="Texture" id=12]
-[ext_resource path="res://player/player.gd" type="Script" id=13]
+[ext_resource path="res://player/playerbody.gd" type="Script" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -27,9 +27,9 @@ radius = 9.0
 height = 36.0
 
 [node name="PlayerRoot" type="Node"]
-script = ExtResource( 13 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+script = ExtResource( 14 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
 frames = SubResource( 1 )
