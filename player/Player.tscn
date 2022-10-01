@@ -26,14 +26,12 @@ animations = [ {
 radius = 9.0
 height = 36.0
 
-[node name="PlayerRoot" type="Node"]
-
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 14 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "back_left"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
