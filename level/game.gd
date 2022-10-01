@@ -16,4 +16,8 @@ func _physics_process(delta):
 
 func time_out():
     print("GAME OVER")
+    reset()
+    
+func reset():
     time = max_time
+    get_node("%PlayArea").reset_map()

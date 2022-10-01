@@ -5,12 +5,14 @@ var velocity = Vector2()
 
 signal hit
 
+func _ready():
+    add_to_group("bullets")
+
 # Called when the node enters the scene tree for the first time.
 func _physics_process(delta):
     velocity = Vector2(-speed*delta, 0).rotated(rotation)
     
     position = position + velocity
-
 
 func _on_Bullet_body_entered(body):
     if body.has_method("hit"):
