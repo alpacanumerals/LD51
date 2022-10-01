@@ -7,7 +7,8 @@ var mob_start = Vector2(531, 264)
 var tentacle = preload("res://mobs/Tentacle.tscn")
 
 func _ready():
-    pass
+    reset_player()
+    reset_mobs()
 
 func _on_PlayerRoot_shoot(bullet, direction, location):
     var b = bullet.instance()
@@ -29,7 +30,11 @@ func reset_mobs():
     for mob in mobs:
         mob.queue_free()
     var t = tentacle.instance()
+    print(t)
     add_child(t)
+    print(get_children())
+    print(t.position.x)
+    print(t.position.y)
     t.position = mob_start
 
 func remove_bullets():
