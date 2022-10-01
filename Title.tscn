@@ -75,5 +75,6 @@ margin_right = 268.0
 margin_bottom = 20.0
 texture_normal = ExtResource( 2 )
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/FullScreenButton" to="." method="_on_FullScreenButton_pressed"]

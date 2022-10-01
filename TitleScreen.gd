@@ -17,3 +17,7 @@ func _on_FullScreenButton_pressed():
         OS.set_window_fullscreen(true)
     else:
         OS.set_window_fullscreen(false)
+
+func _on_NewGameButton_pressed():
+    switcher.playClick()
+    switcher.switchScene("res://level/Game.tscn")
