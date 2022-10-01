@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 constants="*res://autoload/constants.gd"
 resolution="*res://autoload/resolution.gd"
 switcher="*res://autoload/switcher.gd"
+blocks="*res://autoload/blocks.gd"
 
 [display]
 

@@ -1,81 +1,43 @@
 extends TileMap
 
-#the rows 0-7 describe the grid in tile terms
-#row 8 describes player spawn validity, and then mob spawn locations
-var block_1 = [[0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [true]]
+var map_blocks = [
+    blocks.block_1, blocks.block_1, blocks.block_1, blocks.block_1, blocks.block_1, blocks.block_1]
 
-var block_2 = [[0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 2, 2, 0, 0, 0],
-               [0, 0, 0, 2, 2, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [false]]
-
-var block_3 = [[0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 2, 2, 2, 2, 0, 0],
-               [0, 0, 2, 1, 1, 2, 0, 0],
-               [0, 0, 2, 1, 1, 2, 0, 0],
-               [0, 0, 2, 2, 2, 2, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [false]]
-
-var block_4 = [[0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 2, 2, 0, 0, 2, 2, 0],
-               [0, 2, 2, 0, 0, 2, 2, 0],
-               [0, 0, 0, 1, 1, 0, 0, 0],
-               [0, 0, 0, 1, 1, 0, 0, 0],
-               [0, 2, 2, 0, 0, 2, 2, 0],
-               [0, 2, 2, 0, 0, 2, 2, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0],
-               [true]]
-
-var blocks = [block_1, block_1, block_1, block_1, block_1, block_1]
-
-var fallback_blocks = [block_1, block_1, block_1, block_1, block_1, block_1]
+var fallback_blocks = [
+    blocks.block_1, blocks.block_1, blocks.block_1, blocks.block_1, blocks.block_1, blocks.block_1]
 
 func _ready():
     draw_map()
 
 func draw_map():
-    var block_options = [block_1, block_2, block_3, block_4]
+    var block_options = blocks.blocks
     
-    
-    for n in range(blocks.size()):
-        blocks[n] = block_options[randi() % block_options.size()]
+    for n in range(map_blocks.size()):
+        map_blocks[n] = block_options[randi() % block_options.size()]
     var iterations = 0
     while !validate_blocks() && iterations < 63:
-        for n in range(blocks.size()):
-            blocks[n] = block_options[randi() % block_options.size()]
+        for n in range(map_blocks.size()):
+            map_blocks[n] = block_options[randi() % block_options.size()]
         iterations += 1
     if iterations > 63:
-        blocks = fallback_blocks
+        map_blocks = fallback_blocks
     
-    for block_number in range(blocks.size()):
-        set_block(block_number, blocks[block_number])
+    for block_number in range(map_blocks.size()):
+        set_block(block_number, map_blocks[block_number])
     
     set_outer_wall()
 
 func validate_blocks():
-    var starts = 0
-    for block in blocks:
-        if block[8][0]:
-            starts += 1
+    var player_starts = 0
+    var mob_starts = 0
+    for block in map_blocks:
+        if block[8]:
+            player_starts += 1
+        mob_starts += block[9].size()
     
-    print(starts > 0)
-    return starts > 0
+    var mob_start_minimum = get_parent().mob_count
+    
+    return player_starts > 0 && mob_starts > mob_start_minimum
 
 # block_number is an integer from 0 to 5 defining the position on the 3x2 grid of 8x8 blocks
 func set_block(block_number, block_grid):
@@ -98,11 +60,20 @@ func set_outer_wall():
 
 func get_start_block():
     var start_block_numbers = []
-    for n in blocks.size():
-        #print(blocks[n][8][0])
-        if blocks[n][8][0]:
+    for n in map_blocks.size():
+        if map_blocks[n][8]:
             start_block_numbers.push_back(n)
     
     return start_block_numbers[randi() % start_block_numbers.size()]
     
+func get_mob_starts():
+    var mob_starts = []
+    for n in map_blocks.size():
+        var x_offset = (n % 3) * 8
+        var y_offset = int(n / 3) * 8
+        for spawn in map_blocks[n][9]:
+            var x = spawn[0] + x_offset
+            var y = spawn[1] + y_offset
+            mob_starts.push_back([x,y])
     
+    return mob_starts
