@@ -16,14 +16,19 @@ func _on_PlayerRoot_shoot(bullet, direction, location):
     b.position = location
 
 func reset_map():
+    $TileMap.draw_map()
     reset_player()
     reset_mobs()
     remove_bullets()
-    $TileMap.draw_map()
     # reset walls
 
 func reset_player():
-    $PlayerRoot.position = player_start
+    var start_block = $TileMap.get_start_block()
+    
+    var x = (32 * 4) + (32 * 8 * (start_block % 3))
+    var y = (32 * 4) + (32 * 8 * int(start_block / 3))
+    
+    $PlayerRoot.position = Vector2(x, y)
 
 func reset_mobs():
     var mobs = get_tree().get_nodes_in_group(constants.MOB_GROUP)
