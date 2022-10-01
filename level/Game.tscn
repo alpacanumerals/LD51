@@ -1,3 +1,32 @@
 [gd_scene format=2]
 
 [node name="GameRoot" type="Node"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 14.0
+margin_top = 14.0
+margin_right = -14.0
+margin_bottom = -14.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_right = 932.0
+margin_bottom = 512.0
+
+[node name="Left Bar" type="Control" parent="MarginContainer/HBoxContainer"]
+margin_right = 78.0
+margin_bottom = 512.0
+size_flags_horizontal = 3
+
+[node name="Play Area" type="Control" parent="MarginContainer/HBoxContainer"]
+margin_left = 82.0
+margin_right = 850.0
+margin_bottom = 512.0
+rect_min_size = Vector2( 768, 512 )
+
+[node name="Right Bar" type="Control" parent="MarginContainer/HBoxContainer"]
+margin_left = 854.0
+margin_right = 932.0
+margin_bottom = 512.0
+size_flags_horizontal = 3
