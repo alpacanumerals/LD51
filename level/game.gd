@@ -15,7 +15,6 @@ func _physics_process(delta):
         time_out()
 
 func time_out():
-    print("GAME OVER")
     reset()
     
 func reset():

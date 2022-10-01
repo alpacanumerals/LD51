@@ -25,7 +25,7 @@ func reset_player():
     $PlayerRoot.position = player_start
 
 func reset_mobs():
-    var mobs = get_tree().get_nodes_in_group("mobs")
+    var mobs = get_tree().get_nodes_in_group(constants.MOB_GROUP)
     for mob in mobs:
         mob.queue_free()
     var t = tentacle.instance()
@@ -33,6 +33,6 @@ func reset_mobs():
     t.position = mob_start
 
 func remove_bullets():
-    var bullets = get_tree().get_nodes_in_group("bullets")
+    var bullets = get_tree().get_nodes_in_group(constants.BULLET_GROUP)
     for bullet in bullets:
         bullet.queue_free()
