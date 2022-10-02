@@ -17,16 +17,12 @@ func _physics_process(delta):
 
 func _input(event):
     if event is InputEventKey and event.pressed:
-        if event.scancode == KEY_ESCAPE:
+        if event.scancode == KEY_ESCAPE or event.scancode == KEY_P:
             add_child(pause_box.instance())
             
-
 func time_out():
     reset()
     
 func reset():
     time = max_time
     get_node("%PlayArea").reset_map()
-
-func pause_game():
-    pass

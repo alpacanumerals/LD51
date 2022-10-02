@@ -61,24 +61,24 @@ margin_top = 44.0
 margin_right = 198.0
 margin_bottom = 68.0
 
-[node name="Full Screen" type="TextureButton" parent="CenterContainer/VBoxContainer/CenterContainer2"]
+[node name="Main Menu" type="TextureButton" parent="CenterContainer/VBoxContainer/CenterContainer2"]
 margin_left = 59.0
 margin_right = 139.0
 margin_bottom = 24.0
-texture_normal = ExtResource( 4 )
-texture_hover = ExtResource( 3 )
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
 
 [node name="CenterContainer3" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 72.0
 margin_right = 198.0
 margin_bottom = 96.0
 
-[node name="Main Menu" type="TextureButton" parent="CenterContainer/VBoxContainer/CenterContainer3"]
+[node name="Full Screen" type="TextureButton" parent="CenterContainer/VBoxContainer/CenterContainer3"]
 margin_left = 59.0
 margin_right = 139.0
 margin_bottom = 24.0
-texture_normal = ExtResource( 6 )
-texture_hover = ExtResource( 7 )
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
 
 [node name="BotPad" type="Control" parent="CenterContainer/VBoxContainer"]
 margin_top = 100.0
@@ -89,7 +89,7 @@ size_flags_vertical = 3
 
 [connection signal="mouse_entered" from="CenterContainer/VBoxContainer/CenterContainer/Unpause" to="." method="_on_Unpause_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/Unpause" to="." method="_on_Unpause_pressed"]
-[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/CenterContainer2/Full Screen" to="." method="_on_Full_Screen_mouse_entered"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer2/Full Screen" to="." method="_on_Full_Screen_pressed"]
-[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/CenterContainer3/Main Menu" to="." method="_on_Main_Menu_mouse_entered"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer3/Main Menu" to="." method="_on_Main_Menu_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/CenterContainer2/Main Menu" to="." method="_on_Main_Menu_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer2/Main Menu" to="." method="_on_Main_Menu_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/CenterContainer3/Full Screen" to="." method="_on_Full_Screen_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer3/Full Screen" to="." method="_on_Full_Screen_pressed"]
