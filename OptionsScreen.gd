@@ -1,5 +1,7 @@
 extends Node
 
+var sfx_slider_queue = false
+
 func _ready():
     var sound_volume = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Sound"))
     var sound_slider = get_node("%SoundSlider")
@@ -9,6 +11,7 @@ func _ready():
     music_slider.set_value(music_volume)
 
 func _on_SoundSlider_value_changed(value):
+    sfx_slider_queue = true
     var volume = clamp(value, -50, 15)
     AudioServer.set_bus_volume_db(
         AudioServer.get_bus_index("Sound"), volume)
@@ -18,6 +21,7 @@ func _on_SoundSlider_value_changed(value):
     else:
         AudioServer.set_bus_mute(
             AudioServer.get_bus_index("Sound"), false)
+    sounds.sfx_sel()
         
 func _on_MusicSlider_value_changed(value):
     var volume = clamp(value, -50, 15)
