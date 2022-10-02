@@ -34,7 +34,6 @@ func process_shoot():
         if rof_count == 0:
             rof_count = rof
             var shot_direction = direction_to_mouse + rng.rng.randfn(0.0,acc)
-            print(direction_to_mouse)
             emit_signal("shoot", Bullet, shot_direction, position)
         else:
            rof_count = rof_count - 1
