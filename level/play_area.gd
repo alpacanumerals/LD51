@@ -6,12 +6,13 @@ signal mobs_clear
 const tentacle = preload("res://mobs/Tentacle.tscn")
 const blob = preload("res://mobs/Blob.tscn")
 
-var mob_count = 3
+var difficulty = 1
 var current_mobs
+
+const mob_cap = 3
 
 func _ready():
     reset_map()
-    $Navigation2D
 
 func _on_PlayerRoot_shoot(bullet, direction, location):
     var b = bullet.instance()
@@ -41,21 +42,29 @@ func reset_mobs():
     current_mobs = 0
     
     var possible_starts = $TileMap.get_mob_starts()
-    
     var actual_starts = []
-    for n in range(mob_count):
+    
+    var hard_mobs = 0
+    var adj_difficulty = difficulty
+    while adj_difficulty > possible_starts.size() || adj_difficulty > mob_cap:
+        hard_mobs += 1
+        adj_difficulty -= 1
+    
+    for n in range(adj_difficulty):
         if (possible_starts.size() > 0):
             var index = randi() % possible_starts.size()
             var start = possible_starts.pop_at(index)
             actual_starts.push_back(start)
     
     for start in actual_starts:
-        var t = tentacle.instance()
-        var b = blob.instance()
-        add_child(b)
+        var m = blob.instance()
+        if hard_mobs > 0:
+            m = tentacle.instance()
+            hard_mobs -= 1
+        add_child(m)
         var x = start[0] * 32
         var y = start[1] * 32
-        b.position = Vector2(x, y)
+        m.position = Vector2(x, y)
         current_mobs += 1
 
 func remove_bullets():
@@ -81,6 +90,7 @@ func reset_portal():
     $MagicCircle.position = Vector2(x, y)
 
 func _on_GameRoot_reset_map():
+    difficulty += 1
     reset_map()
 
 func _on_MagicCircle_circle_triggered():

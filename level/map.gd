@@ -35,7 +35,7 @@ func validate_blocks():
             player_starts += 1
         mob_starts += block[9].size()
     
-    var mob_start_minimum = get_parent().mob_count
+    var mob_start_minimum = 6
     
     return player_starts > 0 && mob_starts > mob_start_minimum
 
