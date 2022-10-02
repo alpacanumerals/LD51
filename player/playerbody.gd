@@ -10,6 +10,7 @@ var Bullet = preload("res://bullet/Bullet.tscn")
 
 func _ready():
     $AnimatedSprite.play()
+    $HitHalo.play()
 
 func process_movement_input():
     velocity = Vector2()
@@ -38,13 +39,13 @@ func _physics_process(delta):
 func set_animation(direction_to_mouse):
     if (direction_to_mouse > 0 && direction_to_mouse < PI/2):
         $AnimatedSprite.animation = "back_left"
-        #$AnimatedSprite.play()
+        $HitHalo.set_z_index(2)
     if (direction_to_mouse > PI/2):
         $AnimatedSprite.animation = "back_right"
-        #$AnimatedSprite.play()
+        $HitHalo.set_z_index(2)
     if (direction_to_mouse < 0 && direction_to_mouse > -PI/2):
         $AnimatedSprite.animation = "front_left"
-        #$AnimatedSprite.play()
+        $HitHalo.set_z_index(0)
     if (direction_to_mouse < -PI/2):
         $AnimatedSprite.animation = "front_right"
-        #$AnimatedSprite.play()
+        $HitHalo.set_z_index(0)
