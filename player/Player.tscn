@@ -194,14 +194,13 @@ animations = [ {
 script = ExtResource( 14 )
 
 [node name="HitHalo" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -15 )
 frames = SubResource( 38 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -15 )
 shape = SubResource( 39 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 15 )
 z_index = 1
 frames = SubResource( 1 )
 animation = "front_right"

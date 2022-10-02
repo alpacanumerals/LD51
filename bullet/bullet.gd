@@ -7,8 +7,8 @@ signal hit
 
 func _ready():
     add_to_group(constants.BULLET_GROUP)
+    sounds.sfx_shoot_a()
 
-# Called when the node enters the scene tree for the first time.
 func _physics_process(delta):
     velocity = Vector2(-speed*delta, 0).rotated(rotation)
     

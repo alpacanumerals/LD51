@@ -23,18 +23,19 @@ func process_movement_input():
     if Input.is_action_pressed("ui_up"):
         velocity.y -= 1
     velocity = velocity.normalized() * speed
-    
-func _input(event):
-    if event is InputEventMouseButton:
-        if event.button_index == BUTTON_LEFT and event.pressed:
-            emit_signal("shoot", Bullet, direction_to_mouse, position)
-            
+
+func process_shoot():
+    if Input.is_action_pressed("ui_shoot"):
+        emit_signal("shoot", Bullet, direction_to_mouse, position)
+
 func _physics_process(delta):
     process_movement_input()
     velocity = move_and_slide(velocity)
     
     direction_to_mouse = global_position.angle_to_point(get_global_mouse_position())
     set_animation(direction_to_mouse)
+    
+    process_shoot()
 
 func set_animation(direction_to_mouse):
     if (direction_to_mouse > 0 && direction_to_mouse < PI/2):
