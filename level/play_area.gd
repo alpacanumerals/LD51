@@ -69,7 +69,7 @@ func decrement_mobs():
         emit_signal("mobs_clear")
 
 func reset_portal():
-    $MagicCircle.reset_anim()
+    $MagicCircle.reset_circle()
     var start_block = $TileMap.get_start_block()
     
     var x = (32 * 4) + (32 * 8 * (start_block % 3))

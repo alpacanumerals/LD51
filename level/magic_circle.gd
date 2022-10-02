@@ -4,10 +4,12 @@ extends Area2D
 func _ready():
     pass # Replace with function body.
 
-func reset_anim():
+func reset_circle():
+    $CollisionShape2D.set_disabled(true)
+    
     $AnimatedSprite.stop()
     $AnimatedSprite.set_animation("default")
 
 func _on_PlayArea_mobs_clear():
-    print("ping")
+    $CollisionShape2D.set_disabled(false)
     $AnimatedSprite.play()
