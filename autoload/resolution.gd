@@ -1,9 +1,10 @@
 extends Node
-
+### NOT USED ###
 # don't forget to use stretch mode 'viewport' and aspect 'ignore'
 onready var viewport = get_viewport()
 
 func _ready():
+    pause_mode = Node.PAUSE_MODE_PROCESS
     get_tree().connect("screen_resized", self, "_screen_resized")
 
 func _screen_resized():
