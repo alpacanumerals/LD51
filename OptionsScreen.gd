@@ -24,6 +24,7 @@ func _on_SoundSlider_value_changed(value):
     if Input.is_action_pressed("ui_shoot"):
         pass
     else:
+        sfx_slider_queue = false
         sounds.sfx_sel()
         
 func _on_MusicSlider_value_changed(value):
