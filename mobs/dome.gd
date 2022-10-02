@@ -3,7 +3,7 @@ extends Area2D
 signal killed
 signal enemy_shoot(bullet, direction, location)
 
-var Bullet = preload("res://bullet/Bullet.tscn")
+var Bullet = preload("res://bullet/MobBullet.tscn")
 
 onready var play_area = get_parent()
 onready var player = get_parent().get_node("PlayerRoot")

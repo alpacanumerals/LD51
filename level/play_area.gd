@@ -17,7 +17,7 @@ const pack_2 = [tentacle, tentacle, blob]
 const pack_3 = [dome, dome, dome]
 
 const encounters = [[0, [pack_1]], # floor 0 (unused)
-    [1, [pack_1, pack_2]], # floor 1
+    [1, [pack_3, pack_3]], # floor 1
     [2, [pack_1, pack_2]], # floor 2
     [3, [pack_1, pack_2]], # floor 3
     [1, [pack_3]] # floor 4
@@ -33,8 +33,10 @@ func _on_PlayerRoot_shoot(bullet, direction, location):
     b.position = location
 
 func _on_Mob_enemy_shoot(bullet, direction, location):
-    print("mob shot")
-    pass
+    var b = bullet.instance()
+    add_child(b)
+    b.rotation = direction
+    b.position = location
 
 func reset_map():
     $TileMap.draw_map()
@@ -60,10 +62,10 @@ func reset_mobs():
     var spawns = $TileMap.get_mob_starts()
     
     var adj_difficulty = difficulty
-    if adj_difficulty > encounters.size():
-        adj_difficulty = encounters.size()
+    if adj_difficulty > encounters.size()-1:
+        adj_difficulty = encounters.size()-1
     
-    var encounter = encounters[difficulty]
+    var encounter = encounters[adj_difficulty]
     var pack = encounter[1][rng.rng.randi() % encounter[1].size()]
     var pack_count = encounter[0]
     
@@ -106,8 +108,11 @@ func reset_portal():
     $MagicCircle.position = Vector2(x, y)
 
 func _on_GameRoot_reset_map():
-    difficulty += 1
     reset_map()
+
+func _on_GameRoot_set_floor(floor_number):
+    difficulty = floor_number
 
 func _on_MagicCircle_circle_triggered():
     emit_signal("map_clear")
+

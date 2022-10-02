@@ -59,3 +59,6 @@ func set_animation(direction_to_mouse):
     if (direction_to_mouse < -PI/2):
         $AnimatedSprite.animation = "front_right"
         $HitHalo.set_z_index(0)
+
+func player_hit():
+    print("ping")
