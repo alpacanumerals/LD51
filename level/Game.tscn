@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://level/PlayArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://art/bar.png" type="Texture" id=2]
 [ext_resource path="res://art/barfill.png" type="Texture" id=3]
 [ext_resource path="res://level/timeprogress.gd" type="Script" id=4]
-[ext_resource path="res://fonts/OpenSans-name.tres" type="DynamicFont" id=5]
+[ext_resource path="res://fonts/OpenSans-name-bigger.tres" type="DynamicFont" id=5]
 [ext_resource path="res://level/floornumber.gd" type="Script" id=6]
+[ext_resource path="res://fonts/OpenSans-name-big.tres" type="DynamicFont" id=7]
 [ext_resource path="res://level/game.gd" type="Script" id=8]
 
 [node name="GameRoot" type="Node"]
@@ -35,15 +36,16 @@ size_flags_horizontal = 3
 
 [node name="FloorText" type="Label" parent="MarginContainer/HBoxContainer/Left Bar"]
 margin_right = 78.0
-margin_bottom = 16.0
-custom_fonts/font = ExtResource( 5 )
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 7 )
 text = "Floor"
 
 [node name="FloorNumber" type="Label" parent="MarginContainer/HBoxContainer/Left Bar"]
-margin_top = 20.0
+margin_top = 32.0
 margin_right = 78.0
-margin_bottom = 36.0
+margin_bottom = 87.0
 custom_fonts/font = ExtResource( 5 )
+text = "B0"
 script = ExtResource( 6 )
 
 [node name="PlayArea" parent="MarginContainer/HBoxContainer" instance=ExtResource( 1 )]
