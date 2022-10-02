@@ -61,3 +61,6 @@ func set_animation(direction_to_mouse):
 
 func player_hit():
     print("ping")
+
+func player_touch():
+    print("pung")

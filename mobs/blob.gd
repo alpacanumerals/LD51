@@ -21,3 +21,8 @@ func _physics_process(delta):
     # I still don't understand why they go backwards here
     var velocity = Vector2(-speed, 0).rotated(direction_to_player)
     move_and_slide(velocity)
+    
+    for i in get_slide_count():
+        var collision = get_slide_collision(i)
+        if collision.collider.has_method("player_touch"):
+            collision.collider.player_touch()

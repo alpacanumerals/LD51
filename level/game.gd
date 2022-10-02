@@ -29,8 +29,9 @@ func _input(event):
             add_child(pause_box.instance())
             
 func time_out():
-    add_child(game_over.instance())
-    get_node("%PlayArea").queue_free()
+    reset()
+    #add_child(game_over.instance())
+    #get_node("%PlayArea").queue_free()
     
 func reset():
     time = max_time
