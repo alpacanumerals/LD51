@@ -21,7 +21,10 @@ func _on_SoundSlider_value_changed(value):
     else:
         AudioServer.set_bus_mute(
             AudioServer.get_bus_index("Sound"), false)
-    sounds.sfx_sel()
+    if Input.is_action_pressed("ui_shoot"):
+        pass
+    else:
+        sounds.sfx_sel()
         
 func _on_MusicSlider_value_changed(value):
     var volume = clamp(value, -50, 15)
@@ -40,3 +43,10 @@ func _on_BackButton_pressed():
     
 func _on_BackButton_mouse_entered():
     sounds.sfx_mo()
+
+func _input(event):
+    if event is InputEventMouseButton:
+        if event.button_index == BUTTON_LEFT and not event.pressed:
+            if sfx_slider_queue:
+                sfx_slider_queue = false
+                sounds.sfx_sel()

@@ -1,18 +1,18 @@
 extends Node
 
+var prog = false
+
 func _ready():
     pause_mode = Node.PAUSE_MODE_PROCESS
     get_tree().paused = true
     yield(get_tree().create_timer(0.20), "timeout")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
-
-func _input(event):
-    if event is InputEventKey and event.pressed:
-        if event.scancode == KEY_ESCAPE:
-            yield(get_tree().create_timer(0.15), "timeout")
+    prog = true
+    
+func _process(delta):
+    if Input.is_action_just_pressed("ui_cancel"):
+        if prog:
+            music.Orchestrion.set_stream_paused(false)
+            yield(get_tree().create_timer(0.20), "timeout")
             get_tree().paused = false
             queue_free()
 
