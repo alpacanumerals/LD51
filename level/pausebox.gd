@@ -1,15 +1,22 @@
 extends Node
 
+var prog = false
+
 func _ready():
     pause_mode = Node.PAUSE_MODE_PROCESS
     get_tree().paused = true
     yield(get_tree().create_timer(0.20), "timeout")
     music.Orchestrion.set_stream_paused(true)
+    prog = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
-
+func _process(delta):
+    if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_unpause"):
+        if prog:
+            music.Orchestrion.set_stream_paused(false)
+            yield(get_tree().create_timer(0.20), "timeout")
+            get_tree().paused = false
+            queue_free()
+        
 func _on_Unpause_mouse_entered():
     sounds.sfx_mo()
 
@@ -39,11 +46,3 @@ func _on_Full_Screen_pressed():
         OS.set_window_fullscreen(true)
     else:
         OS.set_window_fullscreen(false)
-
-func _input(event):
-    if event is InputEventKey and event.pressed:
-        if event.scancode == KEY_ESCAPE or event.scancode == KEY_P:
-            music.Orchestrion.set_stream_paused(false)
-            yield(get_tree().create_timer(0.20), "timeout")
-            get_tree().paused = false
-            queue_free()
