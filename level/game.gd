@@ -1,8 +1,10 @@
 extends Node
 
+var pause_box = preload("res://level/PauseBox.tscn")
+var game_over = preload("res://level/GameOver.tscn")
+
 export (int) var max_time = 10
 var time = 10
-var pause_box = preload("res://level/PauseBox.tscn")
 var current_floor = 1
 
 signal reset_map
@@ -27,7 +29,8 @@ func _input(event):
             add_child(pause_box.instance())
             
 func time_out():
-    reset()
+    add_child(game_over.instance())
+    get_node("%PlayArea").queue_free()
     
 func reset():
     time = max_time
