@@ -22,6 +22,7 @@ switcher="*res://autoload/switcher.gd"
 constants="*res://autoload/constants.gd"
 blocks="*res://autoload/blocks.gd"
 sounds="*res://autoload/sounds.gd"
+rng="*res://autoload/rng.gd"
 
 [display]
 

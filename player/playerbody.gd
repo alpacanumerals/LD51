@@ -8,6 +8,10 @@ var direction_to_mouse = Vector2()
 signal shoot(bullet, direction, location)
 var Bullet = preload("res://bullet/Bullet.tscn")
 
+var rof = 16
+var rof_count = 0
+var acc = 0.1
+
 func _ready():
     $AnimatedSprite.play()
     $HitHalo.play()
@@ -26,7 +30,12 @@ func process_movement_input():
 
 func process_shoot():
     if Input.is_action_pressed("ui_shoot"):
-        emit_signal("shoot", Bullet, direction_to_mouse, position)
+        if rof_count == 0:
+            rof_count = rof
+            var shot_direction = direction_to_mouse + rng.rng.randfn(0.0,acc)
+            emit_signal("shoot", Bullet, shot_direction, position)
+        else:
+           rof_count = rof_count - 1
 
 func _physics_process(delta):
     process_movement_input()
