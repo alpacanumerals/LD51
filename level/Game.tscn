@@ -48,3 +48,6 @@ margin_right = 78.0
 margin_bottom = 32.0
 max_value = 10.0
 script = ExtResource( 9 )
+
+[connection signal="reset_map" from="." to="MarginContainer/HBoxContainer/PlayArea" method="_on_GameRoot_reset_map"]
+[connection signal="map_clear" from="MarginContainer/HBoxContainer/PlayArea" to="." method="_on_PlayArea_map_clear"]
