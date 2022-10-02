@@ -56,7 +56,7 @@ func reset_player():
 func reset_mobs():
     var mobs = get_tree().get_nodes_in_group(constants.MOB_GROUP)
     for mob in mobs:
-        mob.queue_free()
+        mob.call_deferred("queue_free")
     current_mobs = 0
     
     var spawns = $TileMap.get_mob_starts()
@@ -79,7 +79,7 @@ func reset_mobs():
         var mob = mobs[n]
         var spawn = spawns.pop_at(rng.rng.randi() % spawns.size())
         var m = mob.instance()
-        add_child(m)
+        call_deferred("add_child", m)
         var x = spawn[0] * 32
         var y = spawn[1] * 32
         m.position = Vector2(x, y)

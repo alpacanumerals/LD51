@@ -14,7 +14,7 @@ func _ready():
 
 func hit():
     emit_signal("killed")
-    queue_free()
+    call_deferred("queue_free")
 
 func _physics_process(delta):
     var direction_to_player = position.angle_to_point(player.position)

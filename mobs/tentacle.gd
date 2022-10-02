@@ -10,4 +10,4 @@ func _ready():
 
 func hit():
     emit_signal("killed")
-    queue_free()
+    call_deferred("queue_free")
