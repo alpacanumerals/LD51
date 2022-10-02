@@ -4,3 +4,10 @@ extends Area2D
 func _ready():
     pass # Replace with function body.
 
+func reset_anim():
+    $AnimatedSprite.stop()
+    $AnimatedSprite.set_animation("default")
+
+func _on_PlayArea_mobs_clear():
+    print("ping")
+    $AnimatedSprite.play()

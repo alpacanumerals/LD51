@@ -1,6 +1,7 @@
 extends Control
 
 signal map_clear
+signal mobs_clear
 
 const tentacle = preload("res://mobs/Tentacle.tscn")
 var mob_count = 3
@@ -19,7 +20,7 @@ func _on_PlayerRoot_shoot(bullet, direction, location):
 func reset_map():
     $TileMap.draw_map()
     reset_player()
-    #reset_portal()
+    reset_portal()
     reset_mobs()
     remove_bullets()
 
@@ -60,12 +61,21 @@ func remove_bullets():
         bullet.queue_free()
 
 func _on_Tentacle_killed():
-    check_mob_clearance()
+    decrement_mobs()
 
-func check_mob_clearance():
-    var mobs = get_tree().get_nodes_in_group(constants.MOB_GROUP)
-    if mobs <= 0:
-        emit_signal("map_clear")
+func decrement_mobs():
+    current_mobs -= 1
+    if current_mobs <= 0:
+        emit_signal("mobs_clear")
+
+func reset_portal():
+    $MagicCircle.reset_anim()
+    var start_block = $TileMap.get_start_block()
+    
+    var x = (32 * 4) + (32 * 8 * (start_block % 3))
+    var y = (32 * 4) + (32 * 8 * int(start_block / 3))
+    
+    $MagicCircle.position = Vector2(x, y)
 
 func _on_GameRoot_reset_map():
     reset_map()

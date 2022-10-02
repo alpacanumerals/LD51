@@ -209,5 +209,6 @@ frames = SubResource( 18 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MagicCircle"]
 shape = SubResource( 19 )
 
+[connection signal="mobs_clear" from="." to="MagicCircle" method="_on_PlayArea_mobs_clear"]
 [connection signal="shoot" from="PlayerRoot" to="." method="_on_PlayerRoot_shoot"]
 [connection signal="killed" from="Tentacle" to="." method="_on_Tentacle_killed"]
