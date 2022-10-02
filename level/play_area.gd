@@ -20,6 +20,10 @@ func _on_PlayerRoot_shoot(bullet, direction, location):
     b.rotation = direction
     b.position = location
 
+func _on_Mob_enemy_shoot(bullet, direction, location):
+    print("ping")
+    pass
+
 func reset_map():
     $TileMap.draw_map()
     reset_player()
