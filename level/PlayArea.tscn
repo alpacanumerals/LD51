@@ -1,13 +1,15 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://level/map.gd" type="Script" id=1]
 [ext_resource path="res://level/play_area.gd" type="Script" id=2]
 [ext_resource path="res://mobs/Tentacle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://level/MagicCircle.gd" type="Script" id=5]
 [ext_resource path="res://sprites/tiles/floor_a1.png" type="Texture" id=6]
 [ext_resource path="res://sprites/tiles/wall_a2.png" type="Texture" id=7]
 [ext_resource path="res://sprites/tiles/floor_a2.png" type="Texture" id=8]
 [ext_resource path="res://sprites/tiles/wall_a1.png" type="Texture" id=9]
+[ext_resource path="res://sprites/tiles/circle.png" type="Texture" id=10]
 
 [sub_resource type="NavigationPolygon" id=4]
 vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -99,6 +101,77 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 3/z_index = 0
 
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 96, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 192, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 288, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 384, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 480, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 576, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 672, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 768, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 864, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 960, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 1056, 0, 96, 96 )
+
+[sub_resource type="SpriteFrames" id=18]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=19]
+radius = 32.0156
+
 [node name="PlayArea" type="Control"]
 unique_name_in_owner = true
 margin_left = 82.0
@@ -122,6 +195,19 @@ position = Vector2( 386, 248 )
 
 [node name="Tentacle" parent="." groups=["mobs"] instance=ExtResource( 3 )]
 position = Vector2( 531, 264 )
+
+[node name="MagicCircle" type="Area2D" parent="."]
+position = Vector2( 252, 250 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="MagicCircle"]
+frames = SubResource( 18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagicCircle"]
+shape = SubResource( 19 )
 
 [connection signal="shoot" from="PlayerRoot" to="." method="_on_PlayerRoot_shoot"]
 [connection signal="killed" from="Tentacle" to="." method="_on_Tentacle_killed"]

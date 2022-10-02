@@ -19,6 +19,7 @@ func _on_PlayerRoot_shoot(bullet, direction, location):
 func reset_map():
     $TileMap.draw_map()
     reset_player()
+    #reset_portal()
     reset_mobs()
     remove_bullets()
 
