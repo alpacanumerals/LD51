@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
-export (int) var speed = 200
+export (int) var speed = 250
 
 var velocity = Vector2()
-var direction_to_mouse = Vector2()
+var direction_to_mouse
 
 signal shoot(bullet, direction, location)
 var Bullet = preload("res://bullet/Bullet.tscn")
@@ -34,17 +34,16 @@ func process_shoot():
         if rof_count == 0:
             rof_count = rof
             var shot_direction = direction_to_mouse + rng.rng.randfn(0.0,acc)
+            print(direction_to_mouse)
             emit_signal("shoot", Bullet, shot_direction, position)
         else:
            rof_count = rof_count - 1
 
 func _physics_process(delta):
+    direction_to_mouse = global_position.angle_to_point(get_global_mouse_position())
     process_movement_input()
     velocity = move_and_slide(velocity)
-    
-    direction_to_mouse = global_position.angle_to_point(get_global_mouse_position())
-    set_animation(direction_to_mouse)
-    
+    set_animation(direction_to_mouse)  
     process_shoot()
 
 func set_animation(direction_to_mouse):
