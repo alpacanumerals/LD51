@@ -4,6 +4,8 @@ export (int) var max_time = 10
 var time = 10
 var pause_box = preload("res://level/PauseBox.tscn")
 
+signal reset_map
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     time = max_time
@@ -25,4 +27,7 @@ func time_out():
     
 func reset():
     time = max_time
-    get_node("%PlayArea").reset_map()
+    emit_signal("reset_map")
+
+func _on_PlayArea_map_clear():
+    reset()

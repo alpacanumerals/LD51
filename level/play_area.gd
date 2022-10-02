@@ -65,3 +65,6 @@ func check_mob_clearance():
     var mobs = get_tree().get_nodes_in_group(constants.MOB_GROUP)
     if mobs <= 0:
         emit_signal("map_clear")
+
+func _on_GameRoot_reset_map():
+    reset_map()
