@@ -37,3 +37,7 @@ func shoot():
 func hit():
     emit_signal("killed")
     call_deferred("queue_free")
+
+func _on_Area2D_body_entered(body):
+    if body.has_method("player_touch"):
+        body.player_touch()
