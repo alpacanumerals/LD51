@@ -9,6 +9,5 @@ func _ready():
     connect("killed", play_area, "_on_Tentacle_killed")
 
 func hit():
-    print("peng")
     emit_signal("killed")
     queue_free()

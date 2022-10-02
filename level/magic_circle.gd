@@ -1,15 +1,18 @@
 extends Area2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass # Replace with function body.
+signal circle_triggered
+
+var circle_active = false
 
 func reset_circle():
-    $CollisionShape2D.set_disabled(true)
-    
-    $AnimatedSprite.stop()
-    $AnimatedSprite.set_animation("default")
+    circle_active = false
+    $AnimatedSprite.set_animation("off")
 
 func _on_PlayArea_mobs_clear():
-    $CollisionShape2D.set_disabled(false)
+    circle_active = true
+    $AnimatedSprite.set_animation("on")
     $AnimatedSprite.play()
+
+func _on_MagicCircle_body_entered(body):
+    if circle_active:
+        emit_signal("circle_triggered")

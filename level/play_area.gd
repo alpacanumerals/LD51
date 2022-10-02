@@ -79,3 +79,6 @@ func reset_portal():
 
 func _on_GameRoot_reset_map():
     reset_map()
+
+func _on_MagicCircle_circle_triggered():
+    reset_map()
