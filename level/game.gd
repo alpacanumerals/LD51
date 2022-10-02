@@ -6,12 +6,14 @@ var pause_box = preload("res://level/PauseBox.tscn")
 var current_floor = 1
 
 signal reset_map
+signal set_floor(floor_number)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
     time = max_time
     music.play_battle()
     current_floor = 1
+    emit_signal("set_floor", current_floor)
     
 func _physics_process(delta):
     time -= delta
@@ -30,6 +32,7 @@ func time_out():
 func reset():
     time = max_time
     current_floor += 1
+    emit_signal("set_floor", current_floor)
     emit_signal("reset_map")
 
 func _on_PlayArea_map_clear():

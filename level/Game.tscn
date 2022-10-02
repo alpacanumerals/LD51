@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://level/PlayArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://art/bar.png" type="Texture" id=2]
 [ext_resource path="res://art/barfill.png" type="Texture" id=3]
 [ext_resource path="res://level/timeprogress.gd" type="Script" id=4]
+[ext_resource path="res://fonts/OpenSans-name.tres" type="DynamicFont" id=5]
+[ext_resource path="res://level/floornumber.gd" type="Script" id=6]
 [ext_resource path="res://level/game.gd" type="Script" id=8]
 
 [node name="GameRoot" type="Node"]
@@ -30,6 +32,19 @@ margin_bottom = 512.0
 margin_right = 78.0
 margin_bottom = 512.0
 size_flags_horizontal = 3
+
+[node name="FloorText" type="Label" parent="MarginContainer/HBoxContainer/Left Bar"]
+margin_right = 78.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 5 )
+text = "Floor"
+
+[node name="FloorNumber" type="Label" parent="MarginContainer/HBoxContainer/Left Bar"]
+margin_top = 20.0
+margin_right = 78.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="PlayArea" parent="MarginContainer/HBoxContainer" instance=ExtResource( 1 )]
 
@@ -58,4 +73,5 @@ margin_bottom = 512.0
 texture = ExtResource( 2 )
 
 [connection signal="reset_map" from="." to="MarginContainer/HBoxContainer/PlayArea" method="_on_GameRoot_reset_map"]
+[connection signal="set_floor" from="." to="MarginContainer/HBoxContainer/Left Bar/FloorNumber" method="_on_GameRoot_set_floor"]
 [connection signal="map_clear" from="MarginContainer/HBoxContainer/PlayArea" to="." method="_on_PlayArea_map_clear"]
