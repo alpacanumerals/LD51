@@ -16,7 +16,13 @@ const pack_1 = [tentacle, blob, blob]
 const pack_2 = [tentacle, tentacle, blob]
 const pack_3 = [dome, dome, dome]
 
-const encounters = [[0, [pack_1]], # floor 0 (unused)
+# this is a list of encounters
+# each encounter is in the format [number, list]
+# the number is the number of times the pack will be duplicated
+# the list is the options for what the pack is
+# a pack will be picked from the list and duplicated (number) times
+# pack options are seen above. they don't need to be 3 mobs
+const encounters = [[0, [[]]], # floor 0 (unused)
     [1, [pack_3, pack_3]], # floor 1
     [2, [pack_1, pack_2]], # floor 2
     [3, [pack_1, pack_2]], # floor 3

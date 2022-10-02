@@ -15,6 +15,8 @@ func _physics_process(delta):
     
     position = position + velocity
 
+# these bullets are destroyed if they encounter a collision body/area
+# if that body/area has the 'player_hit' method/func, i.e. is the player, that method is called
 func _on_MobBullet_body_entered(body):
     if body.has_method("player_hit"):
         body.player_hit()

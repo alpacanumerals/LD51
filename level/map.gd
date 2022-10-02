@@ -12,16 +12,24 @@ func _ready():
 func draw_map():
     var block_options = blocks.blocks
     
+    # the map has 6 'blocks' used for random gen in a 3x2 grid. each is 8x8 tiles
+    
+    # picks a random block from the options for each block to start
     for n in range(map_blocks.size()):
         map_blocks[n] = block_options[randi() % block_options.size()]
-    var iterations = 0
-    while !validate_blocks() && iterations < 63:
+    
+    # this checks if the blocks form a valid map
+    # if not it generates another map
+    var iterations = 1
+    while !validate_blocks() && iterations < 64:
         for n in range(map_blocks.size()):
             map_blocks[n] = block_options[randi() % block_options.size()]
         iterations += 1
-    if iterations > 63:
+    # if it does 64 runs without a valid map, it uses a fallback
+    if iterations >= 64:
         map_blocks = fallback_blocks
     
+    # builds the map block by block
     for block_number in range(map_blocks.size()):
         set_block(block_number, map_blocks[block_number])
     
@@ -41,9 +49,11 @@ func validate_blocks():
 
 # block_number is an integer from 0 to 5 defining the position on the 3x2 grid of 8x8 blocks
 func set_block(block_number, block_grid):
+    # these increase x and y to the top left of the block in question
     var x_offset = (block_number % 3) * 8
     var y_offset = int(block_number / 3) * 8
     
+    # then set the tiles in that block
     for local_y in range(8):
         for local_x in range(8):
             var x = local_x + x_offset
