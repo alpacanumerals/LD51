@@ -4,6 +4,8 @@ signal map_clear
 signal mobs_clear
 
 const tentacle = preload("res://mobs/Tentacle.tscn")
+const blob = preload("res://mobs/Blob.tscn")
+
 var mob_count = 3
 var current_mobs
 
@@ -49,18 +51,19 @@ func reset_mobs():
     
     for start in actual_starts:
         var t = tentacle.instance()
-        add_child(t)
+        var b = blob.instance()
+        add_child(b)
         var x = start[0] * 32
         var y = start[1] * 32
-        t.position = Vector2(x, y)
+        b.position = Vector2(x, y)
         current_mobs += 1
 
 func remove_bullets():
     var bullets = get_tree().get_nodes_in_group(constants.BULLET_GROUP)
     for bullet in bullets:
         bullet.queue_free()
-
-func _on_Tentacle_killed():
+    
+func _on_Mob_killed():
     decrement_mobs()
 
 func decrement_mobs():
