@@ -5,11 +5,23 @@ signal mobs_clear
 
 const tentacle = preload("res://mobs/Tentacle.tscn")
 const blob = preload("res://mobs/Blob.tscn")
+const dome = preload("res://mobs/Dome.tscn")
 
 var difficulty = 1
 var current_mobs
 
 const mob_cap = 3
+
+const pack_1 = [tentacle, blob, blob]
+const pack_2 = [tentacle, tentacle, blob]
+const pack_3 = [dome, dome, dome]
+
+const encounters = [[0, [pack_1]], # floor 0 (unused)
+    [1, [pack_1, pack_2]], # floor 1
+    [2, [pack_1, pack_2]], # floor 2
+    [3, [pack_1, pack_2]], # floor 3
+    [1, [pack_3]] # floor 4
+    ]
 
 func _ready():
     reset_map()
@@ -21,7 +33,7 @@ func _on_PlayerRoot_shoot(bullet, direction, location):
     b.position = location
 
 func _on_Mob_enemy_shoot(bullet, direction, location):
-    print("ping")
+    print("mob shot")
     pass
 
 func reset_map():
@@ -45,29 +57,29 @@ func reset_mobs():
         mob.queue_free()
     current_mobs = 0
     
-    var possible_starts = $TileMap.get_mob_starts()
-    var actual_starts = []
+    var spawns = $TileMap.get_mob_starts()
     
-    var hard_mobs = 0
     var adj_difficulty = difficulty
-    while adj_difficulty > possible_starts.size() || adj_difficulty > mob_cap:
-        hard_mobs += 1
-        adj_difficulty -= 1
+    if adj_difficulty > encounters.size():
+        adj_difficulty = encounters.size()
     
-    for n in range(adj_difficulty):
-        if (possible_starts.size() > 0):
-            var index = randi() % possible_starts.size()
-            var start = possible_starts.pop_at(index)
-            actual_starts.push_back(start)
+    var encounter = encounters[difficulty]
+    var pack = encounter[1][rng.rng.randi() % encounter[1].size()]
+    var pack_count = encounter[0]
     
-    for start in actual_starts:
-        var m = blob.instance()
-        if hard_mobs > 0:
-            m = tentacle.instance()
-            hard_mobs -= 1
+    mobs = []
+    for n in range(pack_count):
+        mobs.append_array(pack)
+    
+    mobs = mobs.slice(0, spawns.size()-1)
+    
+    for n in mobs.size():
+        var mob = mobs[n]
+        var spawn = spawns.pop_at(rng.rng.randi() % spawns.size())
+        var m = mob.instance()
         add_child(m)
-        var x = start[0] * 32
-        var y = start[1] * 32
+        var x = spawn[0] * 32
+        var y = spawn[1] * 32
         m.position = Vector2(x, y)
         current_mobs += 1
 
