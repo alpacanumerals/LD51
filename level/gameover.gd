@@ -12,4 +12,5 @@ func _on_Main_Menu_mouse_entered():
 func _on_Main_Menu_pressed():
     sounds.sfx_sel()
     music.Orchestrion.stop()
+    yield(get_tree().create_timer(0.05), "timeout")
     switcher.switch_scene("res://Title.tscn")
