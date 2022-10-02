@@ -8,12 +8,13 @@ var direction_to_mouse = Vector2()
 signal shoot(bullet, direction, location)
 var Bullet = preload("res://bullet/Bullet.tscn")
 
-var rof = 16
+var rof = 8
 var rof_count = 0
 var acc = 0.1
 
 func _ready():
     $AnimatedSprite.play()
+    $HitHalo.animation = "default"
     $HitHalo.play()
 
 func process_movement_input():
