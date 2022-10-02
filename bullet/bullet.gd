@@ -17,9 +17,9 @@ func _physics_process(delta):
 func _on_Bullet_body_entered(body):
     if body.has_method("hit"):
         body.hit()
-    queue_free()
+    call_deferred("queue_free")
 
 func _on_Bullet_area_entered(area):
     if area.has_method("hit"):
         area.hit()
-    queue_free()
+    call_deferred("queue_free")

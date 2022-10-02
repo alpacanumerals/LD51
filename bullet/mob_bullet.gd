@@ -17,10 +17,10 @@ func _physics_process(delta):
 
 func _on_MobBullet_body_entered(body):
     if body.has_method("player_hit"):
-        body.hit()
-    queue_free()
+        body.player_hit()
+    call_deferred("queue_free")
 
 func _on_MobBullet_area_entered(area):
     if area.has_method("player_hit"):
-        area.hit()
-    queue_free()
+        area.player_hit()
+    call_deferred("queue_free")
