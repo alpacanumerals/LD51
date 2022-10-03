@@ -137,12 +137,14 @@ func player_touch():
         player_damage(1)
 
 func atk_up():
+    emit_signal("score_up", 10)
     if atk_stat <= 10:
         atk_stat += 1
         bullet_speed += bullet_increment
         emit_signal("atk_up")
 
 func rof_up():
+    emit_signal("score_up", 10)
     if rof > 1:
         rof -= 1
         emit_signal("rof_up")
