@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Area2D
 
 class_name MobBullet
 
@@ -12,6 +12,8 @@ func _ready():
     add_to_group(constants.BULLET_GROUP)
     $AnimatedSprite.play()
     sounds.sfx_shoot_mob_d()
+    connect("body_entered", self, "_on_MobBullet_body_entered")
+    connect("area_entered", self, "_on_MobBullet_area_entered")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

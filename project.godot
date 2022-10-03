@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://mobs/MobClass.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Area2D",
 "class": "MobBullet",
 "language": "GDScript",
 "path": "res://bullet/MobBulletClass.gd"
