@@ -9,6 +9,7 @@ signal shoot(bullet, direction, location, speed)
 var Bullet = preload("res://bullet/Bullet.tscn")
 
 signal atk_up
+signal rof_up
 
 var rof_base = 8
 var rof = 8
@@ -80,3 +81,9 @@ func player_touch():
 func atk_up():
     bullet_speed += bullet_increment
     emit_signal("atk_up")
+
+func rof_up():
+    rof -= 1
+    if rof < 2:
+        rof = 2
+    emit_signal("rof_up")

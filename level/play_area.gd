@@ -8,8 +8,9 @@ const blob = preload("res://mobs/Blob.tscn")
 const dome = preload("res://mobs/Dome.tscn")
 
 const atk_up = preload("res://power_ups/atk_up.tscn")
+const rof_up = preload("res://power_ups/rof_up.tscn")
 
-const power_ups = [atk_up]
+const power_ups = [atk_up, rof_up]
 
 var difficulty = 1
 var current_mobs
@@ -134,4 +135,7 @@ func _on_MagicCircle_circle_triggered():
     emit_signal("map_clear")
 
 func _on_PlayerRoot_atk_up():
-    print("pong")
+    print("atk up!")
+
+func _on_PlayerRoot_rof_up():
+    print("rof up!")
