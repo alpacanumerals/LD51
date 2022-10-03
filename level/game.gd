@@ -30,9 +30,11 @@ func _input(event):
             
 func time_out():
     reset()
-    #add_child(game_over.instance())
-    #get_node("%PlayArea").queue_free()
-    
+
+func game_over():
+    add_child(game_over.instance())
+    get_node("%PlayArea").queue_free()
+
 func reset():
     time = max_time
     current_floor += 1
@@ -41,3 +43,6 @@ func reset():
 
 func _on_PlayArea_map_clear():
     reset()
+
+func _on_PlayArea_map_failed():
+    game_over()

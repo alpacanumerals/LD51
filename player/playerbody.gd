@@ -10,6 +10,7 @@ var Bullet = preload("res://bullet/Bullet.tscn")
 
 signal atk_up
 signal rof_up
+signal player_dead
 
 var rof_base = 8
 var rof = 8
@@ -23,10 +24,11 @@ var bullet_increment = 200
 const max_hp = 3
 var hp = max_hp
 
-const iframes = 120
+const iframes = 30
 var iframe = iframes
 
 var invuln = false
+var dead = false
 
 func _ready():
     $AnimatedSprite.play()
@@ -61,19 +63,20 @@ func process_shoot():
            rof_count = rof_count - 1
 
 func _physics_process(delta):
-    direction_to_mouse = global_position.angle_to_point(get_global_mouse_position())
-    process_movement_input()
-    velocity = move_and_slide(velocity)
-    set_animation(direction_to_mouse)  
-    process_shoot()
-    detect_mob_collide()
-    handle_iframes()
+    if !dead:
+        direction_to_mouse = global_position.angle_to_point(get_global_mouse_position())
+        process_movement_input()
+        velocity = move_and_slide(velocity)
+        set_animation(direction_to_mouse)  
+        process_shoot()
+        detect_mob_collide()
+        handle_iframes()
     
 func handle_iframes():
     if iframe < iframes:
         iframe += 1
         invuln = true
-    if iframe >= iframes:
+    if iframe >= iframes && !dead:
         invuln = false
         modulate.a = 1
     
@@ -97,16 +100,20 @@ func set_animation(direction_to_mouse):
         $AnimatedSprite.animation = "front_right"
         $HitHalo.set_z_index(0)
 
-func player_kill():
-    pass
-
 func player_damage():
     print("ping")
     hp -= 1
     if hp <= 0:
-        player_invuln()
+        player_kill()
     else:
         player_invuln()
+
+func player_kill():
+    dead = true
+    iframe = 0
+    invuln = true
+    modulate.a = 0.5
+    emit_signal("player_dead")
 
 func player_invuln():
     iframe = 0
@@ -114,12 +121,12 @@ func player_invuln():
     modulate.a = 0.5
 
 func player_hit():
-    if !invuln:
+    if !invuln && !dead:
         sounds.sfx_hit_player()
         player_damage()
 
 func player_touch():
-    if !invuln:
+    if !invuln && !dead:
         sounds.sfx_hit_player()
         player_damage()
 
