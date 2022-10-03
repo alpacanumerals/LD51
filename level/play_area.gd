@@ -28,8 +28,9 @@ const floater = preload("res://mobs/Floater.tscn")
 
 const atk_up = preload("res://power_ups/atk_up.tscn")
 const rof_up = preload("res://power_ups/rof_up.tscn")
+const spd_up = preload("res://power_ups/spd_up.tscn")
 
-const power_ups = [atk_up, rof_up]
+const power_ups = [atk_up, rof_up, spd_up]
 
 var difficulty = 1
 var current_mobs
