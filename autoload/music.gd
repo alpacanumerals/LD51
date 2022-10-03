@@ -29,6 +29,12 @@ func play_gameover():
     Orchestrion.set_stream(music)
     Orchestrion.play()
     
+func play_victory():
+    var music = load("res://sounds/music/victory.mp3")
+    Orchestrion.set_bus("Music")
+    Orchestrion.set_stream(music)
+    Orchestrion.play()
+    
 func pause():
     Orchestrion.set_stream_paused(true)
     
