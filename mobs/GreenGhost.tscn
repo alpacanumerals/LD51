@@ -46,7 +46,7 @@ animations = [ {
 radius = 9.0
 height = 12.0
 
-[node name="Orange" type="KinematicBody2D"]
+[node name="GreenGhost" type="KinematicBody2D"]
 z_index = 1
 collision_layer = 2
 collision_mask = 3
@@ -60,6 +60,7 @@ acc = 0.11
 shot_interval = 1.0
 bullet = ExtResource( 3 )
 shooty = true
+points = 6
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )

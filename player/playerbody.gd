@@ -10,6 +10,9 @@ var Bullet = preload("res://bullet/Bullet.tscn")
 
 signal atk_up
 signal rof_up
+signal spd_up
+signal hp_up(max_hp)
+
 signal player_dead
 signal health_update(hp)
 signal score_up(score)
@@ -137,6 +140,7 @@ func player_touch():
 
 func atk_up():
     emit_signal("score_up", 10)
+    sounds.sfx_pickup_pu()
     if atk_stat <= 10:
         atk_stat += 1
         bullet_speed += bullet_increment
@@ -144,10 +148,34 @@ func atk_up():
 
 func rof_up():
     emit_signal("score_up", 10)
+    sounds.sfx_pickup_pu()
     if rof > 1:
         rof -= 1
         emit_signal("rof_up")
+
+func spd_up():
+    emit_signal("score_up", 10)
+    sounds.sfx_pickup_pu()
+    if speed <= 400:
+        speed += 25
+        emit_signal("spd_up")
+
+func acc_up():
+    emit_signal("score_up", 10)
+    sounds.sfx_pickup_pu()
+    if acc > 0:
+        acc -= 0.01
+        emit_signal("acc_up")
         
+func hp_up():
+    emit_signal("score_up", 10)
+    sounds.sfx_pickup_pu()
+    if max_hp < 18:
+        max_hp += 1
+        hp += 1
+        emit_signal("hp_up", max_hp)
+        emit_signal("health_update", hp)
+
 func get_coin():
     emit_signal("score_up", 10)
     sounds.sfx_pickup_coin()

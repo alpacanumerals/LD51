@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://art/title.png" type="Texture" id=1]
 [ext_resource path="res://art/buttons/button_back.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://art/buttons/button_back_mouse.png" type="Texture" id=4]
 [ext_resource path="res://art/labels/label_sound.png" type="Texture" id=5]
 [ext_resource path="res://art/labels/label_music.png" type="Texture" id=6]
+[ext_resource path="res://fonts/OpenSans-name.tres" type="DynamicFont" id=7]
+[ext_resource path="res://CheckBox.gd" type="Script" id=8]
 
 [node name="OptionsRoot" type="Node"]
 script = ExtResource( 3 )
@@ -39,13 +41,45 @@ margin_bottom = 512.0
 
 [node name="OTopPad" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_right = 188.0
-margin_bottom = 192.0
-rect_min_size = Vector2( 0, 192 )
+margin_bottom = 130.0
+rect_min_size = Vector2( 0, 130 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 134.0
+margin_right = 188.0
+margin_bottom = 169.0
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 22.0
+margin_right = 128.0
+margin_bottom = 35.0
+custom_fonts/font = ExtResource( 7 )
+text = "\"Every 10 Seconds\"
+was a terrible theme."
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 132.0
+margin_right = 160.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 164.0
+margin_right = 188.0
+margin_bottom = 35.0
+hint_tooltip = "Sets the death timer to 30 seconds instead of 10."
+script = ExtResource( 8 )
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 173.0
+margin_right = 188.0
+margin_bottom = 213.0
+rect_min_size = Vector2( 0, 40 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 196.0
+margin_top = 217.0
 margin_right = 188.0
-margin_bottom = 234.0
+margin_bottom = 255.0
 rect_min_size = Vector2( 160, 0 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
@@ -100,7 +134,7 @@ max_value = 15.0
 step = 5.0
 
 [node name="OMidPad" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_top = 238.0
+margin_top = 259.0
 margin_right = 188.0
 margin_bottom = 288.0
 size_flags_vertical = 3
@@ -124,6 +158,7 @@ margin_right = 932.0
 margin_bottom = 512.0
 size_flags_horizontal = 3
 
+[connection signal="toggled" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="_on_CheckBox_toggled"]
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/SoundSlider" to="." method="_on_SoundSlider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_mouse_entered"]

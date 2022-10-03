@@ -14,9 +14,11 @@ export var acc = 0.1
 export var shot_interval = 2.0
 export var bullet = preload("res://bullet/MobBullet.tscn")
 export var shooty = false
+export var points = 0
 
 var flash_frames = 0
 var shot_timer
+var dead: bool = false
 
 func _ready():
     shot_timer = shot_interval
@@ -26,13 +28,19 @@ func _ready():
     connect("enemy_shoot", play_area, "_on_Mob_enemy_shoot")
 
 func _physics_process(delta):
-    shot_timer -= delta
-    move()
-    if shooty:
-        shoot()
-    collide()
-    deflash()
-    
+    if !dead:
+        shot_timer -= delta
+        move()
+        if shooty:
+            shoot()
+        collide()
+        deflash()
+    else:
+        self.modulate.a = 0.5 if Engine.get_frames_drawn() % 2 == 0 else 1.0
+        flash_frames += 1
+        if flash_frames >= 12:
+            really_dead()
+        
 func move():
     var direction_to_player = position.angle_to_point(player.position)
     # I still don't understand why they go backwards here
@@ -48,24 +56,29 @@ func shoot():
 func collide():   
     for i in get_slide_count():
         var collision = get_slide_collision(i)
-        if collision.collider.has_method("player_touch"):
+        if collision.collider.has_method("player_touch") && !dead:
             collision.collider.player_touch()
             
 func mob_touch(node):
-    if node.has_method("player_touch"):
+    if node.has_method("player_touch") && !dead:
         node.player_touch()
 
 func hit():
-    hp -= player.atk_stat
-    if hp <= 0:
-        dead()
-    else:
-        sounds.sfx_hit_mob()
-        flash()
+    if !dead:
+        hp -= player.atk_stat
+        if hp <= 0:
+            dead()
+        else:
+            sounds.sfx_hit_mob()
+            flash()
     
 func dead():
+    dead = true
+    flash_frames = 0
     sounds.sfx_death_mob()
     emit_signal("killed")
+    
+func really_dead(): 
     call_deferred("queue_free")
 
 func flash():

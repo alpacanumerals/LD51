@@ -51,3 +51,7 @@ func _input(event):
             if sfx_slider_queue:
                 sfx_slider_queue = false
                 sounds.sfx_sel()
+
+func _on_CheckBox_toggled(button_pressed):
+    switcher.timer = button_pressed
+

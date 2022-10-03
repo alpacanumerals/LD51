@@ -49,6 +49,7 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource( 1 )
 shooty = true
+points = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )

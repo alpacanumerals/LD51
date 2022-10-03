@@ -15,6 +15,8 @@ signal update_health(health)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    if switcher.timer:
+        max_time = 30
     time = max_time
     music.play_battle()
     current_floor = 1
@@ -33,9 +35,14 @@ func _input(event):
             add_child(pause_box.instance())
             
 func time_out():
+    timer_active = false
     end_game()
 
 func end_game():
+    
+    $Transit.ftb()
+    
+func end_game2():
     add_child(game_over.instance())
     get_node("%PlayArea").queue_free()
 
@@ -56,3 +63,6 @@ func _on_PlayArea_map_failed():
 
 func _on_PlayArea_update_health(health):
     emit_signal("update_health", health)
+
+func _on_Transit_ftb_done():
+    end_game2()
