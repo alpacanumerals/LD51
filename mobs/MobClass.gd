@@ -14,6 +14,7 @@ export var acc = 0.1
 export var shot_interval = 2.0
 export var bullet = preload("res://bullet/MobBullet.tscn")
 export var shooty = false
+export var points = 0
 
 var flash_frames = 0
 var shot_timer
