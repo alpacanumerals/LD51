@@ -3,6 +3,7 @@ extends Control
 signal map_clear
 signal mobs_clear
 signal map_failed
+signal stop_play
 
 signal update_health(health)
 
@@ -255,3 +256,6 @@ func _on_PlayerRoot_hp_up(max_hp):
 
 func _on_PlayerRoot_spd_up():
     emit_signal("spd_up")
+
+func _on_GameRoot_stop_play():
+    emit_signal("stop_play")

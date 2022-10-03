@@ -353,6 +353,7 @@ animation = "off"
 shape = SubResource( 19 )
 
 [connection signal="mobs_clear" from="." to="MagicCircle" method="_on_PlayArea_mobs_clear"]
+[connection signal="stop_play" from="." to="PlayerRoot" method="_on_PlayArea_stop_play"]
 [connection signal="atk_up" from="PlayerRoot" to="." method="_on_PlayerRoot_atk_up"]
 [connection signal="health_update" from="PlayerRoot" to="." method="_on_PlayerRoot_health_update"]
 [connection signal="hp_up" from="PlayerRoot" to="." method="_on_PlayerRoot_hp_up"]

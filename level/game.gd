@@ -13,6 +13,7 @@ var current_floor = 1
 signal reset_map
 signal set_floor(floor_number)
 signal update_health(health)
+signal stop_play
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,6 +40,7 @@ func _input(event):
             
 func time_out():
     timer_active = false
+    emit_signal("stop_play")
     end_game()
 
 func end_game():    
