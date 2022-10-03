@@ -62,41 +62,33 @@ custom_fonts/font = ExtResource( 12 )
 text = "Score: 0"
 script = ExtResource( 13 )
 
-[node name="HealthDisplay" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Left Bar"]
+[node name="HealthDisplay" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Left Bar"]
 margin_top = 111.0
 margin_right = 78.0
 margin_bottom = 309.0
 size_flags_vertical = 3
 script = ExtResource( 11 )
 
-[node name="Control1" type="Control" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay"]
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay"]
+margin_right = 78.0
+margin_bottom = 23.0
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay/VBoxContainer"]
 margin_right = 23.0
-margin_bottom = 198.0
-size_flags_horizontal = 3
-
-[node name="Heart" type="Sprite" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay/Control1" groups=["hearts"]]
+margin_bottom = 23.0
 texture = ExtResource( 10 )
-centered = false
 
-[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay"]
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay/VBoxContainer"]
 margin_left = 27.0
 margin_right = 50.0
-margin_bottom = 198.0
-size_flags_horizontal = 3
-
-[node name="Heart" type="Sprite" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay/Control2" groups=["hearts"]]
+margin_bottom = 23.0
 texture = ExtResource( 10 )
-centered = false
 
-[node name="Control3" type="Control" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay/VBoxContainer"]
 margin_left = 54.0
-margin_right = 78.0
-margin_bottom = 198.0
-size_flags_horizontal = 3
-
-[node name="Heart" type="Sprite" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay/Control3" groups=["hearts"]]
+margin_right = 77.0
+margin_bottom = 23.0
 texture = ExtResource( 10 )
-centered = false
 
 [node name="P_UpDisplay" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Left Bar"]
 margin_top = 313.0
@@ -160,11 +152,11 @@ texture = ExtResource( 2 )
 [connection signal="reset_map" from="." to="MarginContainer/HBoxContainer/PlayArea" method="_on_GameRoot_reset_map"]
 [connection signal="set_floor" from="." to="MarginContainer/HBoxContainer/Left Bar/FloorNumber" method="_on_GameRoot_set_floor"]
 [connection signal="set_floor" from="." to="MarginContainer/HBoxContainer/PlayArea" method="_on_GameRoot_set_floor"]
-[connection signal="update_health" from="." to="MarginContainer/HBoxContainer/Left Bar/HealthDisplay" method="_on_GameRoot_update_health"]
 [connection signal="atk_up" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/P_UpDisplay" method="_on_PlayArea_atk_up"]
 [connection signal="map_clear" from="MarginContainer/HBoxContainer/PlayArea" to="." method="_on_PlayArea_map_clear"]
 [connection signal="map_failed" from="MarginContainer/HBoxContainer/PlayArea" to="." method="_on_PlayArea_map_failed"]
 [connection signal="rof_up" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/P_UpDisplay" method="_on_PlayArea_rof_up"]
 [connection signal="score_up" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/ScoreLabel" method="_on_PlayArea_score_up"]
 [connection signal="spd_up" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/P_UpDisplay" method="_on_PlayArea_spd_up"]
-[connection signal="update_health" from="MarginContainer/HBoxContainer/PlayArea" to="." method="_on_PlayArea_update_health"]
+[connection signal="update_health" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/HealthDisplay" method="_on_PlayArea_update_health"]
+[connection signal="update_max_health" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/HealthDisplay" method="_on_PlayArea_update_max_health"]
