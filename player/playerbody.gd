@@ -80,10 +80,10 @@ func set_animation(direction_to_mouse):
         $HitHalo.set_z_index(0)
 
 func player_hit():
-    print("ping")
+    sounds.sfx_hit_player()
 
 func player_touch():
-    print("pung")
+    sounds.sfx_hit_player()
 
 func atk_up():
     bullet_speed += bullet_increment

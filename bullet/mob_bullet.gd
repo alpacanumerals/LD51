@@ -6,7 +6,7 @@ var velocity = Vector2()
 signal hit
 
 func _ready():
-    $AnimatedSprite.play()
+    #$AnimatedSprite.play()
     add_to_group(constants.BULLET_GROUP)
     sounds.sfx_shoot_mob_d()
 
