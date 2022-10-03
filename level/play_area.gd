@@ -4,6 +4,8 @@ signal map_clear
 signal mobs_clear
 signal map_failed
 
+signal update_health(health)
+
 const tentacle = preload("res://mobs/Tentacle.tscn")
 const blob = preload("res://mobs/Blob.tscn")
 const dome = preload("res://mobs/Dome.tscn")
@@ -68,6 +70,7 @@ func reset_player():
     
     $PlayerRoot.position = Vector2(x, y)
     $PlayerRoot.reset_hp()
+    emit_signal("update_health", $PlayerRoot.hp)
 
 func clear_mobs():
     var mobs = get_tree().get_nodes_in_group(constants.MOB_GROUP)
@@ -153,3 +156,6 @@ func _on_PlayerRoot_rof_up():
 func _on_PlayerRoot_player_dead():
     yield(get_tree().create_timer(0.50), "timeout")
     emit_signal("map_failed")
+
+func _on_PlayerRoot_health_update(hp):
+    emit_signal("update_health", hp)
