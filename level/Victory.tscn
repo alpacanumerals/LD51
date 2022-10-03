@@ -24,31 +24,34 @@ margin_right = 960.0
 margin_bottom = 540.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
-margin_left = 386.0
-margin_top = 155.0
-margin_right = 574.0
-margin_bottom = 385.0
+margin_left = 384.0
+margin_top = 153.0
+margin_right = 576.0
+margin_bottom = 387.0
 
 [node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
-margin_right = 188.0
+margin_left = 5.0
+margin_right = 192.0
 margin_bottom = 54.0
 custom_fonts/font = ExtResource( 5 )
-text = "\"You've cleared the 40th floor?
+text = "\"You've cleared the 40th floor?!
 Well I- I suppose that's good
 enough. As a start.\""
 
 [node name="Control" type="Control" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_left = 5.0
 margin_top = 58.0
-margin_right = 188.0
+margin_right = 192.0
 margin_bottom = 68.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
 margin_top = 72.0
-margin_right = 188.0
+margin_right = 192.0
 margin_bottom = 88.0
 
 [node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 5.0
 margin_right = 75.0
 margin_bottom = 16.0
 custom_fonts/font = ExtResource( 5 )
@@ -62,22 +65,23 @@ custom_fonts/font = ExtResource( 5 )
 script = ExtResource( 6 )
 
 [node name="Control2" type="Control" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_left = 5.0
 margin_top = 92.0
-margin_right = 188.0
-margin_bottom = 98.0
-rect_min_size = Vector2( 0, 6 )
+margin_right = 192.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 0, 10 )
 
 [node name="MainMenu" type="TextureButton" parent="MarginContainer/CenterContainer/VBoxContainer"]
-margin_top = 102.0
-margin_right = 188.0
-margin_bottom = 126.0
+margin_top = 106.0
+margin_right = 192.0
+margin_bottom = 130.0
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 2 )
 
 [node name="Control3" type="Control" parent="MarginContainer/CenterContainer/VBoxContainer"]
-margin_top = 130.0
-margin_right = 188.0
-margin_bottom = 230.0
+margin_top = 134.0
+margin_right = 192.0
+margin_bottom = 234.0
 rect_min_size = Vector2( 0, 100 )
 
 [connection signal="mouse_entered" from="MarginContainer/CenterContainer/VBoxContainer/MainMenu" to="." method="_on_MainMenu_mouse_entered"]
