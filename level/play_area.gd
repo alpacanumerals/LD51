@@ -2,6 +2,7 @@ extends Control
 
 signal map_clear
 signal mobs_clear
+signal map_failed
 
 const tentacle = preload("res://mobs/Tentacle.tscn")
 const blob = preload("res://mobs/Blob.tscn")
@@ -56,8 +57,8 @@ func reset_map():
     reset_portal()
     clear_mobs()
     clear_power_ups()
+    clear_bullets()
     populate_map()
-    remove_bullets()
 
 func reset_player():
     var start_block = $TileMap.get_start_block()
@@ -66,6 +67,7 @@ func reset_player():
     var y = (32 * 4) + (32 * 8 * int(start_block / 3))
     
     $PlayerRoot.position = Vector2(x, y)
+    $PlayerRoot.reset_hp()
 
 func clear_mobs():
     var mobs = get_tree().get_nodes_in_group(constants.MOB_GROUP)
@@ -111,7 +113,7 @@ func add_object(object, spawns):
     var y = spawn[1] * 32
     o.position = Vector2(x, y)
 
-func remove_bullets():
+func clear_bullets():
     var bullets = get_tree().get_nodes_in_group(constants.BULLET_GROUP)
     for bullet in bullets:
         bullet.queue_free()
@@ -147,3 +149,7 @@ func _on_PlayerRoot_atk_up():
 
 func _on_PlayerRoot_rof_up():
     print("rof up!")
+
+func _on_PlayerRoot_player_dead():
+    yield(get_tree().create_timer(0.50), "timeout")
+    emit_signal("map_failed")

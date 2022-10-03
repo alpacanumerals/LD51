@@ -10,6 +10,7 @@ var Bullet = preload("res://bullet/Bullet.tscn")
 
 signal atk_up
 signal rof_up
+signal player_dead
 
 var rof_base = 8
 var rof = 8
@@ -20,15 +21,24 @@ const bullet_base = 400
 var bullet_speed = 400
 var bullet_increment = 200
 
+const max_hp = 3
+var hp = max_hp
+
+const iframes = 30
+var iframe = iframes
+
+var invuln = false
+var dead = false
+
 func _ready():
     $AnimatedSprite.play()
     $HitHalo.animation = "default"
     $HitHalo.play()
-    
-# we actually don't need this since stats only reset when you die and the whole scene is reloaded
-func reset_stats():
-    bullet_speed = bullet_base
-    rof = rof_base
+
+func reset_hp():
+    hp = max_hp
+    invuln = false
+    iframe = iframes
 
 func process_movement_input():
     velocity = Vector2()
@@ -45,6 +55,7 @@ func process_movement_input():
 func process_shoot():
     if Input.is_action_pressed("ui_shoot"):
         if rof_count == 0:
+            print("pong")
             rof_count = rof
             var shot_direction = direction_to_mouse + rng.rng.randfn(0.0,acc)
             emit_signal("shoot", Bullet, shot_direction, position, bullet_speed)
@@ -52,12 +63,22 @@ func process_shoot():
            rof_count = rof_count - 1
 
 func _physics_process(delta):
-    direction_to_mouse = global_position.angle_to_point(get_global_mouse_position())
-    process_movement_input()
-    velocity = move_and_slide(velocity)
-    set_animation(direction_to_mouse)  
-    process_shoot()
-    detect_mob_collide()
+    if !dead:
+        direction_to_mouse = global_position.angle_to_point(get_global_mouse_position())
+        process_movement_input()
+        velocity = move_and_slide(velocity)
+        set_animation(direction_to_mouse)  
+        process_shoot()
+        detect_mob_collide()
+        handle_iframes()
+    
+func handle_iframes():
+    if iframe < iframes:
+        iframe += 1
+        invuln = true
+    if iframe >= iframes && !dead:
+        invuln = false
+        modulate.a = 1
     
 func detect_mob_collide():
     for i in get_slide_count():
@@ -79,11 +100,35 @@ func set_animation(direction_to_mouse):
         $AnimatedSprite.animation = "front_right"
         $HitHalo.set_z_index(0)
 
+func player_damage():
+    print("ping")
+    hp -= 1
+    if hp <= 0:
+        player_kill()
+    else:
+        player_invuln()
+
+func player_kill():
+    dead = true
+    iframe = 0
+    invuln = true
+    modulate.a = 0.5
+    emit_signal("player_dead")
+
+func player_invuln():
+    iframe = 0
+    invuln = true
+    modulate.a = 0.5
+
 func player_hit():
-    sounds.sfx_hit_player()
+    if !invuln && !dead:
+        sounds.sfx_hit_player()
+        player_damage()
 
 func player_touch():
-    sounds.sfx_hit_player()
+    if !invuln && !dead:
+        sounds.sfx_hit_player()
+        player_damage()
 
 func atk_up():
     bullet_speed += bullet_increment
