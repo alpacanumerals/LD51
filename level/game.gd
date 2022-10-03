@@ -35,7 +35,7 @@ func _input(event):
 func time_out():
     reset()
 
-func game_over():
+func end_game():
     add_child(game_over.instance())
     get_node("%PlayArea").queue_free()
 
@@ -52,7 +52,7 @@ func _on_PlayArea_map_clear():
 func _on_PlayArea_map_failed():
     timer_active = false
     yield(get_tree().create_timer(2.0), "timeout")
-    game_over()
+    end_game()
 
 func _on_PlayArea_update_health(health):
     emit_signal("update_health", health)
