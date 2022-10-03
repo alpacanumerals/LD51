@@ -29,6 +29,12 @@ func _physics_process(delta):
     if shot_timer < 0:
         shoot()
         shot_timer = shot_interval
+    
+    for i in get_slide_count():
+        var collision = get_slide_collision(i)
+        if collision.collider.has_method("player_touch"):
+            collision.collider.player_touch()
+
 
 func shoot():
     var direction_to_player = position.angle_to_point(player.position) + rng.rng.randfn(0.0,0.1)
@@ -46,6 +52,6 @@ func dead():
     emit_signal("killed")
     call_deferred("queue_free")
 
-func _on_Area2D_body_entered(body):
-    if body.has_method("player_touch"):
-        body.player_touch()
+func mob_touch(node):
+    if node.has_method("player_touch"):
+        node.player_touch()

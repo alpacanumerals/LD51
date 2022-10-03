@@ -57,6 +57,13 @@ func _physics_process(delta):
     velocity = move_and_slide(velocity)
     set_animation(direction_to_mouse)  
     process_shoot()
+    detect_mob_collide()
+    
+func detect_mob_collide():
+    for i in get_slide_count():
+        var collision = get_slide_collision(i)
+        if collision.collider.has_method("mob_touch"):
+            collision.collider.mob_touch(self)
 
 func set_animation(direction_to_mouse):
     if (direction_to_mouse > 0 && direction_to_mouse < PI/2):

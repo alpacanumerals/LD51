@@ -35,3 +35,7 @@ func _physics_process(delta):
         var collision = get_slide_collision(i)
         if collision.collider.has_method("player_touch"):
             collision.collider.player_touch()
+
+func mob_touch(node):
+    if node.has_method("player_touch"):
+        node.player_touch()

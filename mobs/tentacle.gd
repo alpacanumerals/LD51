@@ -9,6 +9,12 @@ func _ready():
     add_to_group(constants.MOB_GROUP)
     connect("killed", play_area, "_on_Mob_killed")
 
+func _physics_process(delta):
+    for i in get_slide_count():
+        var collision = get_slide_collision(i)
+        if collision.collider.has_method("player_touch"):
+            collision.collider.player_touch()
+
 func hit():
     hp -= 1
     if hp <= 0:
@@ -21,6 +27,6 @@ func dead():
     emit_signal("killed")
     call_deferred("queue_free")
 
-func _on_Tentacle_body_entered(body):
-    if body.has_method("player_touch"):
-        body.player_touch()
+func mob_touch(node):
+    if node.has_method("player_touch"):
+        node.player_touch()
