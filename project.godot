@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Mob",
 "language": "GDScript",
 "path": "res://mobs/MobClass.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "MobBullet",
+"language": "GDScript",
+"path": "res://bullet/MobBulletClass.gd"
 } ]
 _global_script_class_icons={
-"Mob": ""
+"Mob": "",
+"MobBullet": ""
 }
 
 [application]

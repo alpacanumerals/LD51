@@ -57,8 +57,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": ""
 }
-speed = 50
-hp = 20
+hp = 40
 shooty = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

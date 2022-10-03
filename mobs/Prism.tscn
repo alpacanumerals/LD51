@@ -53,7 +53,9 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
-speed = 150
+hp = 20
+shot_interval = 1.5
+shooty = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )

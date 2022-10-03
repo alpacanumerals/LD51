@@ -31,6 +31,7 @@ func _physics_process(delta):
     if shooty:
         shoot()
     collide()
+    deflash()
     
 func move():
     var direction_to_player = position.angle_to_point(player.position)
@@ -60,6 +61,7 @@ func hit():
         dead()
     else:
         sounds.sfx_hit_mob()
+        flash()
     
 func dead():
     sounds.sfx_death_mob()
@@ -68,6 +70,7 @@ func dead():
 
 func flash():
     $AnimatedSprite.modulate = Color(1,0,0,1)
+    flash_frames = 7
 
 func deflash():
     if flash_frames >= 1:
