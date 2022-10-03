@@ -5,8 +5,8 @@ signal killed
 onready var player = get_parent().get_node("PlayerRoot")
 onready var play_area = get_parent()
 
-const speed = 50
-var hp = 1
+const speed = 100
+var hp = 3
 var flashframes = 0
 
 func _ready():

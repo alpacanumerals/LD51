@@ -21,7 +21,6 @@ func hit():
         dead()
     else:
         sounds.sfx_hit_mob()
-
 func dead():
     sounds.sfx_death_mob()
     emit_signal("killed")

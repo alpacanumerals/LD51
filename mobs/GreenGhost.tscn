@@ -1,37 +1,37 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://mobs/MobClass.gd" type="Script" id=1]
-[ext_resource path="res://sprites/mobs/mob_d.png" type="Texture" id=2]
+[ext_resource path="res://mobs/GreenGhost.gd" type="Script" id=1]
+[ext_resource path="res://sprites/mobs/mob_e.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 24, 24 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 24, 0, 24, 24 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 48, 0, 24, 24 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 72, 0, 24, 24 )
+region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 96, 0, 24, 24 )
+region = Rect2( 128, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 120, 0, 24, 24 )
+region = Rect2( 160, 0, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
@@ -41,13 +41,18 @@ animations = [ {
 "speed": 6.0
 } ]
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 9.0
+height = 12.0
 
-[node name="Dome" type="KinematicBody2D"]
+[node name="MobGeneral" type="KinematicBody2D"]
 z_index = 1
 collision_layer = 2
 collision_mask = 3
 script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )
