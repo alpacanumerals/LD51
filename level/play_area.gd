@@ -5,6 +5,8 @@ signal mobs_clear
 signal map_failed
 
 signal update_health(health)
+
+signal update_max_health(max_health)
 signal atk_up
 signal rof_up
 signal spd_up
@@ -29,8 +31,9 @@ const floater = preload("res://mobs/Floater.tscn")
 const atk_up = preload("res://power_ups/atk_up.tscn")
 const rof_up = preload("res://power_ups/rof_up.tscn")
 const spd_up = preload("res://power_ups/spd_up.tscn")
+const hp_up = preload("res://power_ups/hp_up.tscn")
 
-const power_ups = [atk_up, rof_up, spd_up]
+const power_ups = [hp_up]
 
 var difficulty = 1
 var current_mobs
@@ -242,3 +245,9 @@ func _on_PlayerRoot_health_update(hp):
 
 func _on_PlayerRoot_score_up(score):
     emit_signal("score_up", score)
+
+func _on_PlayerRoot_hp_up(max_hp):
+    emit_signal("update_max_health", max_hp)
+
+func _on_PlayerRoot_spd_up():
+    emit_signal("spd_up")

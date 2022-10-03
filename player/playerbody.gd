@@ -10,6 +10,9 @@ var Bullet = preload("res://bullet/Bullet.tscn")
 
 signal atk_up
 signal rof_up
+signal spd_up
+signal hp_up(max_hp)
+
 signal player_dead
 signal health_update(hp)
 signal score_up(score)
@@ -170,7 +173,7 @@ func hp_up():
     if max_hp < 18:
         max_hp += 1
         hp += 1
-        emit_signal("hp_up")
+        emit_signal("hp_up", max_hp)
 
 func get_coin():
     emit_signal("score_up", 10)
