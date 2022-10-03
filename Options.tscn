@@ -36,54 +36,53 @@ rect_min_size = Vector2( 325, 0 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 margin_left = 329.0
-margin_right = 517.0
+margin_right = 532.0
 margin_bottom = 512.0
 
 [node name="OTopPad" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-margin_right = 188.0
+margin_right = 203.0
 margin_bottom = 130.0
 rect_min_size = Vector2( 0, 130 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 134.0
-margin_right = 188.0
+margin_right = 203.0
 margin_bottom = 169.0
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 22.0
-margin_right = 128.0
+margin_right = 171.0
 margin_bottom = 35.0
 custom_fonts/font = ExtResource( 7 )
-text = "\"Every 10 Seconds\"
-was a terrible theme."
+text = "Did you think \"Every 10
+ Seconds\" was a bad theme?"
 
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 132.0
-margin_right = 160.0
+margin_left = 175.0
+margin_right = 175.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 
 [node name="CheckBox" type="CheckBox" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 164.0
-margin_right = 188.0
+margin_left = 179.0
+margin_right = 203.0
 margin_bottom = 35.0
 hint_tooltip = "Sets the death timer to 30 seconds instead of 10."
 script = ExtResource( 8 )
 
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 173.0
-margin_right = 188.0
+margin_right = 203.0
 margin_bottom = 213.0
 rect_min_size = Vector2( 0, 40 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 217.0
-margin_right = 188.0
+margin_right = 203.0
 margin_bottom = 255.0
 rect_min_size = Vector2( 160, 0 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_right = 188.0
+margin_right = 203.0
 margin_bottom = 17.0
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
@@ -93,14 +92,14 @@ texture = ExtResource( 5 )
 
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 84.0
-margin_right = 84.0
+margin_right = 99.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 
 [node name="SoundSlider" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 88.0
-margin_right = 188.0
+margin_left = 103.0
+margin_right = 203.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 100, 0 )
 min_value = -50.0
@@ -109,7 +108,7 @@ step = 5.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 margin_top = 21.0
-margin_right = 188.0
+margin_right = 203.0
 margin_bottom = 38.0
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
@@ -119,14 +118,14 @@ texture = ExtResource( 6 )
 
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 84.0
-margin_right = 84.0
+margin_right = 99.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 
 [node name="MusicSlider" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
-margin_left = 88.0
-margin_right = 188.0
+margin_left = 103.0
+margin_right = 203.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 100, 0 )
 min_value = -50.0
@@ -135,25 +134,25 @@ step = 5.0
 
 [node name="OMidPad" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 259.0
-margin_right = 188.0
+margin_right = 203.0
 margin_bottom = 288.0
 size_flags_vertical = 3
 
 [node name="BackButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 292.0
-margin_right = 188.0
+margin_right = 203.0
 margin_bottom = 316.0
 texture_normal = ExtResource( 2 )
 texture_hover = ExtResource( 4 )
 
 [node name="OBotPad" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 320.0
-margin_right = 188.0
+margin_right = 203.0
 margin_bottom = 512.0
 rect_min_size = Vector2( 0, 192 )
 
 [node name="RightOScreenPad" type="Control" parent="MarginContainer/HBoxContainer"]
-margin_left = 521.0
+margin_left = 536.0
 margin_right = 932.0
 margin_bottom = 512.0
 size_flags_horizontal = 3
