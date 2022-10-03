@@ -43,6 +43,7 @@ func end_game():
     $Transit.ftb()
     
 func end_game2():
+    switcher.finalfloor = current_floor
     add_child(game_over.instance())
     get_node("%PlayArea").queue_free()
 

@@ -2,6 +2,8 @@ extends Node
 
 var current_scene
 var timer: bool
+var finalfloor
+var finalscore
 
 func _ready():
     pause_mode = Node.PAUSE_MODE_PROCESS
