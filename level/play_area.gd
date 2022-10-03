@@ -9,6 +9,14 @@ signal update_health(health)
 const tentacle = preload("res://mobs/Tentacle.tscn")
 const blob = preload("res://mobs/Blob.tscn")
 const dome = preload("res://mobs/Dome.tscn")
+const orange = preload("res://mobs/Orange.tscn")
+const amogus = preload("res://mobs/Amogus.tscn")
+const flower = preload("res://mobs/Flower.tscn")
+const greenghost = preload("res://mobs/GreenGhost.tscn")
+const tendrils = preload("res://mobs/Tendrils.tscn")
+const timespider = preload("res://mobs/TSpider.tscn")
+const prism = preload("res://mobs/Prism.tscn")
+const floater = preload("res://mobs/Floater.tscn")
 
 const atk_up = preload("res://power_ups/atk_up.tscn")
 const rof_up = preload("res://power_ups/rof_up.tscn")
@@ -17,8 +25,6 @@ const power_ups = [atk_up, rof_up]
 
 var difficulty = 1
 var current_mobs
-
-const mob_cap = 3
 
 const pack_1 = [tentacle, blob, blob]
 const pack_2 = [tentacle, tentacle, blob]
