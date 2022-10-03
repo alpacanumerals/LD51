@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 signal killed
 signal enemy_shoot(bullet, direction, location)
@@ -9,8 +9,10 @@ var Bullet = preload("res://bullet/MobBullet.tscn")
 onready var play_area = get_parent()
 onready var player = get_parent().get_node("PlayerRoot")
 
-const shot_interval = 1.5
+var shot_interval = 2
 var shot_timer
+var hp = 1
+var flash_frames = 0
 
 # initialisation for the dome.
 # starts animation, adds to the 'mob' group
@@ -29,15 +31,40 @@ func _physics_process(delta):
     if shot_timer < 0:
         shoot()
         shot_timer = shot_interval
+    for i in get_slide_count():
+        var collision = get_slide_collision(i)
+        if collision.collider.has_method("player_touch"):
+            collision.collider.player_touch()   
+    deflash()
+
+func flash():
+    $AnimatedSprite.modulate = Color(1,0,0,1)
+
+func deflash():
+    if flash_frames >= 1:
+        flash_frames -= 1
+    if flash_frames <= 0:
+        $AnimatedSprite.modulate = Color(1,1,1,1)
+
 
 func shoot():
-    var direction_to_player = position.angle_to_point(player.position)
+    var direction_to_player = position.angle_to_point(player.position) + rng.rng.randfn(0.0,0.1)
     emit_signal("enemy_shoot", Bullet, direction_to_player, position)
 
 func hit():
+    hp -= 1
+    if hp <= 0:
+        dead()
+    else:
+        flash_frames = 5
+        flash()
+        sounds.sfx_hit_mob()
+
+func dead():
+    sounds.sfx_death_mob()
     emit_signal("killed")
     call_deferred("queue_free")
 
-func _on_Area2D_body_entered(body):
-    if body.has_method("player_touch"):
-        body.player_touch()
+func mob_touch(node):
+    if node.has_method("player_touch"):
+        node.player_touch()

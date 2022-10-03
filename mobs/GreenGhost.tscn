@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://mobs/MobClass.gd" type="Script" id=1]
+[ext_resource path="res://sprites/mobs/mob_e.png" type="Texture" id=2]
+[ext_resource path="res://bullet/Poison.tscn" type="PackedScene" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 9.0
+height = 12.0
+
+[node name="Orange" type="KinematicBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+speed = 225
+hp = 3
+acc = 0.11
+shot_interval = 1.0
+bullet = ExtResource( 3 )
+shooty = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 8 )

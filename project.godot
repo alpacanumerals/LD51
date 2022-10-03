@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Mob",
+"language": "GDScript",
+"path": "res://mobs/MobClass.gd"
+}, {
+"base": "Area2D",
+"class": "MobBullet",
+"language": "GDScript",
+"path": "res://bullet/MobBulletClass.gd"
+} ]
+_global_script_class_icons={
+"Mob": "",
+"MobBullet": ""
+}
+
 [application]
 
 config/name="LD51"

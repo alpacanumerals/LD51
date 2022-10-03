@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://level/PlayArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://art/bar.png" type="Texture" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://fonts/OpenSans-name-big.tres" type="DynamicFont" id=7]
 [ext_resource path="res://level/game.gd" type="Script" id=8]
 [ext_resource path="res://art/floor.png" type="Texture" id=9]
+[ext_resource path="res://sprites/symbols/heart_full.png" type="Texture" id=10]
+[ext_resource path="res://level/health_display.gd" type="Script" id=11]
+[ext_resource path="res://fonts/OpenSans-name.tres" type="DynamicFont" id=12]
+[ext_resource path="res://level/score_label.gd" type="Script" id=13]
+[ext_resource path="res://level/p_up_display.gd" type="Script" id=14]
 
 [node name="GameRoot" type="Node"]
 script = ExtResource( 8 )
@@ -49,6 +54,78 @@ custom_fonts/font = ExtResource( 5 )
 text = "B0"
 script = ExtResource( 6 )
 
+[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer/Left Bar"]
+margin_top = 91.0
+margin_right = 78.0
+margin_bottom = 107.0
+custom_fonts/font = ExtResource( 12 )
+text = "Score: 0"
+script = ExtResource( 13 )
+
+[node name="HealthDisplay" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Left Bar"]
+margin_top = 111.0
+margin_right = 78.0
+margin_bottom = 309.0
+size_flags_vertical = 3
+script = ExtResource( 11 )
+
+[node name="Control1" type="Control" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay"]
+margin_right = 23.0
+margin_bottom = 198.0
+size_flags_horizontal = 3
+
+[node name="Heart" type="Sprite" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay/Control1" groups=["hearts"]]
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay"]
+margin_left = 27.0
+margin_right = 50.0
+margin_bottom = 198.0
+size_flags_horizontal = 3
+
+[node name="Heart" type="Sprite" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay/Control2" groups=["hearts"]]
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Control3" type="Control" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay"]
+margin_left = 54.0
+margin_right = 78.0
+margin_bottom = 198.0
+size_flags_horizontal = 3
+
+[node name="Heart" type="Sprite" parent="MarginContainer/HBoxContainer/Left Bar/HealthDisplay/Control3" groups=["hearts"]]
+texture = ExtResource( 10 )
+centered = false
+
+[node name="P_UpDisplay" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Left Bar"]
+margin_top = 313.0
+margin_right = 78.0
+margin_bottom = 512.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 14 )
+
+[node name="AtkUps" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Left Bar/P_UpDisplay"]
+margin_right = 23.0
+margin_bottom = 199.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RofUps" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Left Bar/P_UpDisplay"]
+margin_left = 27.0
+margin_right = 50.0
+margin_bottom = 199.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SpdUps" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Left Bar/P_UpDisplay"]
+margin_left = 54.0
+margin_right = 78.0
+margin_bottom = 199.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="PlayArea" parent="MarginContainer/HBoxContainer" instance=ExtResource( 1 )]
 
 [node name="Sprite" type="Sprite" parent="MarginContainer/HBoxContainer/PlayArea"]
@@ -83,4 +160,10 @@ texture = ExtResource( 2 )
 [connection signal="reset_map" from="." to="MarginContainer/HBoxContainer/PlayArea" method="_on_GameRoot_reset_map"]
 [connection signal="set_floor" from="." to="MarginContainer/HBoxContainer/Left Bar/FloorNumber" method="_on_GameRoot_set_floor"]
 [connection signal="set_floor" from="." to="MarginContainer/HBoxContainer/PlayArea" method="_on_GameRoot_set_floor"]
+[connection signal="update_health" from="." to="MarginContainer/HBoxContainer/Left Bar/HealthDisplay" method="_on_GameRoot_update_health"]
+[connection signal="atk_up" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/P_UpDisplay" method="_on_PlayArea_atk_up"]
 [connection signal="map_clear" from="MarginContainer/HBoxContainer/PlayArea" to="." method="_on_PlayArea_map_clear"]
+[connection signal="map_failed" from="MarginContainer/HBoxContainer/PlayArea" to="." method="_on_PlayArea_map_failed"]
+[connection signal="rof_up" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/P_UpDisplay" method="_on_PlayArea_rof_up"]
+[connection signal="spd_up" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/P_UpDisplay" method="_on_PlayArea_spd_up"]
+[connection signal="update_health" from="MarginContainer/HBoxContainer/PlayArea" to="." method="_on_PlayArea_update_health"]

@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/playerdeath.wav-749f154112e66dccaa91e1cc0b749867.sample"
+
+[deps]
+
+source_file="res://sounds/sfx_game/playerdeath.wav"
+dest_files=[ "res://.import/playerdeath.wav-749f154112e66dccaa91e1cc0b749867.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

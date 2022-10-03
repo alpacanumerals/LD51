@@ -1,18 +1,17 @@
 extends Area2D
 
-export (int) var speed = 400
+export (int) var speed = 150
 var velocity = Vector2()
 
 signal hit
 
 func _ready():
-    $AnimatedSprite.play()
+    #$AnimatedSprite.play()
     add_to_group(constants.BULLET_GROUP)
-    sounds.sfx_shoot_a()
+    sounds.sfx_shoot_mob_d()
 
 func _physics_process(delta):
     velocity = Vector2(-speed*delta, 0).rotated(rotation)
-    
     position = position + velocity
 
 # these bullets are destroyed if they encounter a collision body/area

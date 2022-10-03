@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=2]
 
-[ext_resource path="res://mobs/blob.gd" type="Script" id=1]
+[ext_resource path="res://mobs/MobClass.gd" type="Script" id=1]
 [ext_resource path="res://sprites/mobs/mob_b.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -53,7 +53,7 @@ flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 216, 0, 24, 24 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=25]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 240, 0, 24, 24 )
@@ -115,10 +115,10 @@ region = Rect2( 240, 24, 24, 24 )
 
 [sub_resource type="SpriteFrames" id=23]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 25 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
 "loop": true,
 "name": "default",
-"speed": 5.0
+"speed": 6.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=24]
@@ -127,12 +127,13 @@ height = 10.0
 
 [node name="Blob" type="KinematicBody2D"]
 z_index = 1
-collision_layer = 7
-collision_mask = 7
+collision_layer = 2
+collision_mask = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+speed = 50
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 23 )
