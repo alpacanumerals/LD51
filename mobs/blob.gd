@@ -13,6 +13,7 @@ func _ready():
     connect("killed", play_area, "_on_Mob_killed")
 
 func hit():
+    
     emit_signal("killed")
     call_deferred("queue_free")
 

@@ -31,7 +31,7 @@ func _physics_process(delta):
         shot_timer = shot_interval
 
 func shoot():
-    var direction_to_player = position.angle_to_point(player.position)
+    var direction_to_player = position.angle_to_point(player.position) + rng.rng.randfn(0.0,0.1)
     emit_signal("enemy_shoot", Bullet, direction_to_player, position)
 
 func hit():
