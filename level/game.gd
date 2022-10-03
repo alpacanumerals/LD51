@@ -33,7 +33,7 @@ func _input(event):
             add_child(pause_box.instance())
             
 func time_out():
-    reset()
+    end_game()
 
 func end_game():
     add_child(game_over.instance())
