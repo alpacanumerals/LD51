@@ -152,6 +152,7 @@ animations = [ {
 } ]
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
+z_index = 2
 script = ExtResource( 14 )
 
 [node name="HitHalo" type="AnimatedSprite" parent="."]

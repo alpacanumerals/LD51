@@ -35,6 +35,7 @@ animations = [ {
 radius = 7.0
 
 [node name="MobBullet" type="Area2D"]
+z_index = 1
 collision_layer = 4
 script = ExtResource( 2 )
 
