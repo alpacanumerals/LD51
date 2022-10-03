@@ -1,6 +1,7 @@
 extends Node
 
 var current_scene
+var timer: bool
 
 func _ready():
     pause_mode = Node.PAUSE_MODE_PROCESS
@@ -18,3 +19,4 @@ func switch_scene_long(path):
 func switch_quit():
     yield(get_tree().create_timer(0.20), "timeout")
     get_tree().quit()
+

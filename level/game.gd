@@ -15,6 +15,8 @@ signal update_health(health)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    if switcher.timer:
+        max_time = 30
     time = max_time
     music.play_battle()
     current_floor = 1
