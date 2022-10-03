@@ -37,6 +37,7 @@ func _ready():
     $HitHalo.play()
 
 func reset_hp():
+    deflash()
     hp = max_hp
     invuln = false
     iframe = iframes
@@ -113,7 +114,7 @@ func player_kill():
     dead = true
     iframe = 0
     invuln = true
-    modulate.a = 0.5
+    flash()
     sounds.sfx_death_player()
     emit_signal("player_dead")
 
@@ -141,3 +142,9 @@ func rof_up():
     if rof < 2:
         rof = 2
     emit_signal("rof_up")
+
+func flash():
+    $AnimatedSprite.modulate = Color(1,0,0,1)
+
+func deflash():
+    $AnimatedSprite.modulate = Color(1,1,1,1)
