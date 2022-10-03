@@ -165,5 +165,6 @@ texture = ExtResource( 2 )
 [connection signal="map_clear" from="MarginContainer/HBoxContainer/PlayArea" to="." method="_on_PlayArea_map_clear"]
 [connection signal="map_failed" from="MarginContainer/HBoxContainer/PlayArea" to="." method="_on_PlayArea_map_failed"]
 [connection signal="rof_up" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/P_UpDisplay" method="_on_PlayArea_rof_up"]
+[connection signal="score_up" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/ScoreLabel" method="_on_PlayArea_score_up"]
 [connection signal="spd_up" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/P_UpDisplay" method="_on_PlayArea_spd_up"]
 [connection signal="update_health" from="MarginContainer/HBoxContainer/PlayArea" to="." method="_on_PlayArea_update_health"]

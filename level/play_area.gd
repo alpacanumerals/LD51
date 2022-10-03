@@ -9,6 +9,7 @@ signal atk_up
 signal rof_up
 signal spd_up
 
+signal score_up(score)
 
 const tentacle = preload("res://mobs/Tentacle.tscn")
 const blob = preload("res://mobs/Blob.tscn")
@@ -220,6 +221,7 @@ func _on_GameRoot_reset_map():
     reset_map()
 
 func _on_GameRoot_set_floor(floor_number):
+    emit_signal("score_up", floor_number)
     difficulty = floor_number
 
 func _on_MagicCircle_circle_triggered():
@@ -236,3 +238,6 @@ func _on_PlayerRoot_player_dead():
 
 func _on_PlayerRoot_health_update(hp):
     emit_signal("update_health", hp)
+
+func _on_PlayerRoot_score_up(score):
+    emit_signal("score_up", score)
