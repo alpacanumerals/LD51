@@ -102,7 +102,6 @@ func get_mob_starts():
     for n in map_blocks.size():
         var x_offset = (n % 3) * 8
         var y_offset = int(n / 3) * 8
-        print(map_blocks[n][9])
         for spawn in map_blocks[n][9]:
             var x = spawn[0] + x_offset
             var y = spawn[1] + y_offset
