@@ -2,6 +2,7 @@ extends Node
 
 var pause_box = preload("res://level/PauseBox.tscn")
 var game_over = preload("res://level/GameOver.tscn")
+var game_under = preload("res://level/Victory.tscn")
 
 export (int) var max_time = 10
 var time = 10
@@ -23,6 +24,8 @@ func _ready():
     emit_signal("set_floor", current_floor)
     
 func _physics_process(delta):
+    if current_floor > 40:
+        victory() 
     if timer_active:
         time -= delta
         time = clamp(time, 0, max_time)
@@ -38,8 +41,7 @@ func time_out():
     timer_active = false
     end_game()
 
-func end_game():
-    
+func end_game():    
     $Transit.ftb()
     
 func end_game2():
@@ -66,4 +68,16 @@ func _on_PlayArea_update_health(health):
     emit_signal("update_health", health)
 
 func _on_Transit_ftb_done():
-    end_game2()
+    if current_floor > 40:
+        victory2()
+    else:
+        end_game2()
+
+func victory():
+    timer_active = false
+    $Transit.ftb()
+    
+func victory2():
+    switcher.finalfloor = current_floor
+    add_child(game_under.instance())
+    get_node("%PlayArea").queue_free()
