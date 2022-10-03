@@ -3,6 +3,7 @@ extends Area2D
 class_name MobBullet
 
 export (int) var speed = 150
+export (int) var damage = 1
 var velocity = Vector2()
 
 signal hit
@@ -15,16 +16,16 @@ func _ready():
     connect("body_entered", self, "_on_MobBullet_body_entered")
     connect("area_entered", self, "_on_MobBullet_area_entered")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
+func _physics_process(delta):
+    velocity = Vector2(-speed*delta, 0).rotated(rotation)
+    position = position + velocity
     
 func _on_MobBullet_body_entered(body):
     if body.has_method("player_hit"):
-        body.player_hit()
+        body.player_hit(damage)
     call_deferred("queue_free")
 
 func _on_MobBullet_area_entered(area):
-    if area.has_method("player_hit"):
-        area.player_hit()
+    #if area.has_method("player_hit"):
+    #   area.player_hit(damage)
     call_deferred("queue_free")

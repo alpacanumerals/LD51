@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://mobs/MobClass.gd" type="Script" id=1]
 [ext_resource path="res://sprites/mobs/mob_e.png" type="Texture" id=2]
+[ext_resource path="res://bullet/Poison.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -53,10 +54,11 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
-speed = 150
+speed = 225
 hp = 3
-acc = 0.05
+acc = 0.11
 shot_interval = 1.0
+bullet = ExtResource( 3 )
 shooty = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

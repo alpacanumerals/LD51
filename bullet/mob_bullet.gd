@@ -12,7 +12,6 @@ func _ready():
 
 func _physics_process(delta):
     velocity = Vector2(-speed*delta, 0).rotated(rotation)
-    
     position = position + velocity
 
 # these bullets are destroyed if they encounter a collision body/area
