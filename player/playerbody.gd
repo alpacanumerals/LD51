@@ -174,6 +174,7 @@ func hp_up():
         max_hp += 1
         hp += 1
         emit_signal("hp_up", max_hp)
+        emit_signal("health_update", hp)
 
 func get_coin():
     emit_signal("score_up", 10)

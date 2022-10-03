@@ -1,10 +1,14 @@
 extends VBoxContainer
 
-onready var heart_full = preload("res://sprites/symbols/heart_full.png")
-onready var heart_empty = preload("res://sprites/symbols/heart_empty.png")
+var heart_full = preload("res://sprites/symbols/heart_full.png")
+var heart_empty = preload("res://sprites/symbols/heart_empty.png")
+
+var internal_health = 3
 
 func set_max_health(max_health):
     remove_children()
+    
+    print(get_children().size())
     
     var rows = int(max_health / 3)
     var remainder = max_health % 3
@@ -26,21 +30,28 @@ func set_max_health(max_health):
             heart.set_texture(heart_full)
             heart.add_to_group(constants.HEART_GROUP)
             container.add_child(heart)
+    
+    set_health(internal_health)
         
 
 func set_health(health):
+    internal_health = health
     var n = 0
+    print(get_children().size())
     for container in get_children():
         for heart in container.get_children():
+            #print(n)
             if n < health:
+                #print("ping")
                 heart.set_texture(heart_full)
             else:
+                #print("pong")
                 heart.set_texture(heart_empty)
             n += 1
     
 func remove_children():
     for child in get_children():
-        child.queue_free()
+        child.free()
 
 func zero_health():
     var hearts = get_tree().get_nodes_in_group(constants.HEART_GROUP)
