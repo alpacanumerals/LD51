@@ -5,5 +5,5 @@ func _ready():
 
 func _on_HpUp_body_entered(body):
     if body.has_method("hp_up"):
-        body.atk_up()
+        body.hp_up()
         call_deferred("queue_free")
