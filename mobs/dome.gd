@@ -9,9 +9,9 @@ var Bullet = preload("res://bullet/MobBullet.tscn")
 onready var play_area = get_parent()
 onready var player = get_parent().get_node("PlayerRoot")
 
-const shot_interval = 1.5
+const shot_interval = 2
 var shot_timer
-
+var hp = 1
 # initialisation for the dome.
 # starts animation, adds to the 'mob' group
 # connects the 'killed' signal to the play_area script's '_on_Mob_killed' method
@@ -35,6 +35,14 @@ func shoot():
     emit_signal("enemy_shoot", Bullet, direction_to_player, position)
 
 func hit():
+    hp -= 1
+    if hp <= 0:
+        dead()
+    else:
+        sounds.sfx_hit_mob()
+
+func dead():
+    sounds.sfx_death_mob()
     emit_signal("killed")
     call_deferred("queue_free")
 

@@ -6,7 +6,7 @@ onready var player = get_parent().get_node("PlayerRoot")
 onready var play_area = get_parent()
 
 const speed = 50
-var hp = 2
+var hp = 1
 
 func _ready():
     $AnimatedSprite.play()
@@ -14,10 +14,11 @@ func _ready():
     connect("killed", play_area, "_on_Mob_killed")
 
 func hit():
-    sounds.sfx_hit_mob()
     hp -= 1
     if hp <= 0:
         dead()
+    else:
+        sounds.sfx_hit_mob()
     
 func dead():
     sounds.sfx_death_mob()
