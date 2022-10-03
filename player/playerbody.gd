@@ -5,17 +5,29 @@ export (int) var speed = 250
 var velocity = Vector2()
 var direction_to_mouse
 
-signal shoot(bullet, direction, location)
+signal shoot(bullet, direction, location, speed)
 var Bullet = preload("res://bullet/Bullet.tscn")
 
+signal atk_up
+
+var rof_base = 8
 var rof = 8
 var rof_count = 0
 var acc = 0.1
+
+const bullet_base = 400
+var bullet_speed = 400
+var bullet_increment = 200
 
 func _ready():
     $AnimatedSprite.play()
     $HitHalo.animation = "default"
     $HitHalo.play()
+    
+# we actually don't need this since stats only reset when you die and the whole scene is reloaded
+func reset_stats():
+    bullet_speed = bullet_base
+    rof = rof_base
 
 func process_movement_input():
     velocity = Vector2()
@@ -34,7 +46,7 @@ func process_shoot():
         if rof_count == 0:
             rof_count = rof
             var shot_direction = direction_to_mouse + rng.rng.randfn(0.0,acc)
-            emit_signal("shoot", Bullet, shot_direction, position)
+            emit_signal("shoot", Bullet, shot_direction, position, bullet_speed)
         else:
            rof_count = rof_count - 1
 
@@ -64,3 +76,7 @@ func player_hit():
 
 func player_touch():
     print("pung")
+
+func atk_up():
+    bullet_speed += bullet_increment
+    emit_signal("atk_up")

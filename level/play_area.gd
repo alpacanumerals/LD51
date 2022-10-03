@@ -7,6 +7,10 @@ const tentacle = preload("res://mobs/Tentacle.tscn")
 const blob = preload("res://mobs/Blob.tscn")
 const dome = preload("res://mobs/Dome.tscn")
 
+const atk_up = preload("res://power_ups/atk_up.tscn")
+
+const power_ups = [atk_up]
+
 var difficulty = 1
 var current_mobs
 
@@ -32,8 +36,9 @@ const encounters = [[0, [[]]], # floor 0 (unused)
 func _ready():
     reset_map()
 
-func _on_PlayerRoot_shoot(bullet, direction, location):
+func _on_PlayerRoot_shoot(bullet, direction, location, speed):
     var b = bullet.instance()
+    b.speed = speed
     add_child(b)
     b.rotation = direction
     b.position = location
@@ -75,6 +80,9 @@ func reset_mobs():
     var pack = encounter[1][rng.rng.randi() % encounter[1].size()]
     var pack_count = encounter[0]
     
+    var power_up = power_ups[rng.rng.randi() % power_ups.size()]
+    add_object(power_up, spawns)
+    
     mobs = []
     for n in range(pack_count):
         mobs.append_array(pack)
@@ -83,13 +91,16 @@ func reset_mobs():
     
     for n in mobs.size():
         var mob = mobs[n]
-        var spawn = spawns.pop_at(rng.rng.randi() % spawns.size())
-        var m = mob.instance()
-        call_deferred("add_child", m)
-        var x = spawn[0] * 32
-        var y = spawn[1] * 32
-        m.position = Vector2(x, y)
+        add_object(mob, spawns)
         current_mobs += 1
+
+func add_object(object, spawns):
+    var spawn = spawns.pop_at(rng.rng.randi() % spawns.size())
+    var o = object.instance()
+    call_deferred("add_child", o)
+    var x = spawn[0] * 32
+    var y = spawn[1] * 32
+    o.position = Vector2(x, y)
 
 func remove_bullets():
     var bullets = get_tree().get_nodes_in_group(constants.BULLET_GROUP)
@@ -122,3 +133,5 @@ func _on_GameRoot_set_floor(floor_number):
 func _on_MagicCircle_circle_triggered():
     emit_signal("map_clear")
 
+func _on_PlayerRoot_atk_up():
+    print("pong")
