@@ -9,6 +9,7 @@ var current_floor = 1
 
 signal reset_map
 signal set_floor(floor_number)
+signal update_health(health)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,3 +47,6 @@ func _on_PlayArea_map_clear():
 
 func _on_PlayArea_map_failed():
     game_over()
+
+func _on_PlayArea_update_health(health):
+    emit_signal("update_health", health)

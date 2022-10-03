@@ -11,6 +11,7 @@ var Bullet = preload("res://bullet/Bullet.tscn")
 signal atk_up
 signal rof_up
 signal player_dead
+signal health_update(hp)
 
 var rof_base = 8
 var rof = 8
@@ -101,8 +102,8 @@ func set_animation(direction_to_mouse):
         $HitHalo.set_z_index(0)
 
 func player_damage():
-    print("ping")
     hp -= 1
+    emit_signal("health_update", hp)
     if hp <= 0:
         player_kill()
     else:
