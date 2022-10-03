@@ -45,6 +45,7 @@ func _ready():
 func reset_hp():
     deflash()
     hp = max_hp
+    emit_signal("health_update", hp)
     invuln = false
     iframe = iframes
 
