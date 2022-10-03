@@ -3,10 +3,10 @@ extends CanvasLayer
 signal ftb_done
 
 func _ready():
-    ftb()
+    pass
 
 func ftb():
-        $AnimationPlayer.play("fade_to_black")
+        $AnimationPlayer.play("fade to black")
 
 func _on_AnimationPlayer_animation_finished(anim_name):
     if anim_name == "fade to black":

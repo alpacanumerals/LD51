@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://level/PlayArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://art/bar.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://fonts/OpenSans-name.tres" type="DynamicFont" id=12]
 [ext_resource path="res://level/score_label.gd" type="Script" id=13]
 [ext_resource path="res://level/p_up_display.gd" type="Script" id=14]
+[ext_resource path="res://Transition.tscn" type="PackedScene" id=15]
 
 [node name="GameRoot" type="Node"]
 script = ExtResource( 8 )
@@ -149,6 +150,8 @@ margin_right = 75.0
 margin_bottom = 512.0
 texture = ExtResource( 2 )
 
+[node name="Transit" parent="." instance=ExtResource( 15 )]
+
 [connection signal="reset_map" from="." to="MarginContainer/HBoxContainer/PlayArea" method="_on_GameRoot_reset_map"]
 [connection signal="set_floor" from="." to="MarginContainer/HBoxContainer/Left Bar/FloorNumber" method="_on_GameRoot_set_floor"]
 [connection signal="set_floor" from="." to="MarginContainer/HBoxContainer/PlayArea" method="_on_GameRoot_set_floor"]
@@ -159,4 +162,4 @@ texture = ExtResource( 2 )
 [connection signal="score_up" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/ScoreLabel" method="_on_PlayArea_score_up"]
 [connection signal="spd_up" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/P_UpDisplay" method="_on_PlayArea_spd_up"]
 [connection signal="update_health" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/HealthDisplay" method="_on_PlayArea_update_health"]
-[connection signal="update_max_health" from="MarginContainer/HBoxContainer/PlayArea" to="MarginContainer/HBoxContainer/Left Bar/HealthDisplay" method="_on_PlayArea_update_max_health"]
+[connection signal="ftb_done" from="Transit" to="." method="_on_Transit_ftb_done"]
