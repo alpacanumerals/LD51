@@ -53,6 +53,5 @@ func _input(event):
                 sounds.sfx_sel()
 
 func _on_CheckBox_toggled(button_pressed):
-    sounds.sfx_sel()
     switcher.timer = button_pressed
 
