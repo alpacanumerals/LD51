@@ -58,6 +58,7 @@ hp = 25
 acc = 0.05
 bullet = ExtResource( 3 )
 shooty = true
+points = 16
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )
