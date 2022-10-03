@@ -5,6 +5,8 @@ var game_over = preload("res://level/GameOver.tscn")
 
 export (int) var max_time = 10
 var time = 10
+var timer_active = true
+
 var current_floor = 1
 
 signal reset_map
@@ -19,10 +21,11 @@ func _ready():
     emit_signal("set_floor", current_floor)
     
 func _physics_process(delta):
-    time -= delta
-    time = clamp(time, 0, max_time)
-    if time <= 0:
-        time_out()
+    if timer_active:
+        time -= delta
+        time = clamp(time, 0, max_time)
+        if time <= 0:
+            time_out()
 
 func _input(event):
     if event is InputEventKey and event.pressed:
@@ -38,6 +41,7 @@ func game_over():
 
 func reset():
     time = max_time
+    timer_active = true
     current_floor += 1
     emit_signal("set_floor", current_floor)
     emit_signal("reset_map")
@@ -46,6 +50,8 @@ func _on_PlayArea_map_clear():
     reset()
 
 func _on_PlayArea_map_failed():
+    timer_active = false
+    yield(get_tree().create_timer(2.0), "timeout")
     game_over()
 
 func _on_PlayArea_update_health(health):

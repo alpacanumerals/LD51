@@ -114,6 +114,7 @@ func player_kill():
     iframe = 0
     invuln = true
     modulate.a = 0.5
+    sounds.sfx_death_player()
     emit_signal("player_dead")
 
 func player_invuln():

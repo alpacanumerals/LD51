@@ -154,7 +154,6 @@ func _on_PlayerRoot_rof_up():
     print("rof up!")
 
 func _on_PlayerRoot_player_dead():
-    yield(get_tree().create_timer(0.50), "timeout")
     emit_signal("map_failed")
 
 func _on_PlayerRoot_health_update(hp):
