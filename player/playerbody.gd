@@ -104,8 +104,8 @@ func set_animation(direction_to_mouse):
         $AnimatedSprite.animation = "front_right"
         $HitHalo.set_z_index(0)
 
-func player_damage():
-    hp -= 1
+func player_damage(damage):
+    hp -= damage
     emit_signal("health_update", hp)
     if hp <= 0:
         player_kill()
@@ -125,15 +125,15 @@ func player_invuln():
     invuln = true
     modulate.a = 0.5
 
-func player_hit():
+func player_hit(damage):
     if !invuln && !dead:
         sounds.sfx_hit_player()
-        player_damage()
+        player_damage(damage)
 
 func player_touch():
     if !invuln && !dead:
         sounds.sfx_hit_player()
-        player_damage()
+        player_damage(1)
 
 func atk_up():
     if atk_stat <= 10:
