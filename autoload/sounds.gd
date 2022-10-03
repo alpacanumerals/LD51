@@ -38,15 +38,15 @@ func _ready():
     current_scene = root.get_child(root.get_child_count() - 1)
     ui_mouseover = mouseover_sound.instance()
     ui_select = select_sound.instance()
-    game_shoot_a = load_shoot_a
-    game_shoot_mob_d = load_shoot_mob_d
-    game_hit_mob = load_hit_mob
-    game_hit_player = load_hit_player
-    game_death_mob = load_death_mob
-    game_death_player = load_death_player
-    game_pickup_coin = load_pickup_coin
-    game_pickup_pu = load_pickup_pu
-    game_pickup_pu2 = load_pickup_pu2
+    game_shoot_a = load_shoot_a.instance()
+    game_shoot_mob_d = load_shoot_mob_d.instance()
+    game_hit_mob = load_hit_mob.instance()
+    game_hit_player = load_hit_player.instance()
+    game_death_mob = load_death_mob.instance()
+    game_death_player = load_death_player.instance()
+    game_pickup_coin = load_pickup_coin.instance()
+    game_pickup_pu = load_pickup_pu.instance()
+    game_pickup_pu2 = load_pickup_pu2.instance()
     add_child(ui_mouseover)
     add_child(ui_select)
     add_child(game_shoot_a)
