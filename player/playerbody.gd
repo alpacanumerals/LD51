@@ -60,7 +60,6 @@ func process_movement_input():
 func process_shoot():
     if Input.is_action_pressed("ui_shoot"):
         if rof_count == 0:
-            print("pong")
             rof_count = rof
             var shot_direction = direction_to_mouse + rng.rng.randfn(0.0,acc)
             emit_signal("shoot", Bullet, shot_direction, position, bullet_speed)
