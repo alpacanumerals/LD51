@@ -45,6 +45,7 @@ func _ready():
 func reset_hp():
     deflash()
     hp = max_hp
+    emit_signal("health_update", hp)
     invuln = false
     iframe = iframes
 
@@ -185,3 +186,10 @@ func flash():
 
 func deflash():
     $AnimatedSprite.modulate = Color(1,1,1,1)
+
+func _on_PlayArea_stop_play():
+    dead = true
+    iframe = 0
+    invuln = true
+    flash()
+    sounds.sfx_death_player()

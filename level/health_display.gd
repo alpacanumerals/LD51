@@ -8,8 +8,6 @@ var internal_health = 3
 func set_max_health(max_health):
     remove_children()
     
-    print(get_children().size())
-    
     var rows = int(max_health / 3)
     var remainder = max_health % 3
     
@@ -37,15 +35,11 @@ func set_max_health(max_health):
 func set_health(health):
     internal_health = health
     var n = 0
-    print(get_children().size())
     for container in get_children():
         for heart in container.get_children():
-            #print(n)
             if n < health:
-                #print("ping")
                 heart.set_texture(heart_full)
             else:
-                #print("pong")
                 heart.set_texture(heart_empty)
             n += 1
     

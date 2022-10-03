@@ -3,6 +3,7 @@ extends Control
 signal map_clear
 signal mobs_clear
 signal map_failed
+signal stop_play
 
 signal update_health(health)
 
@@ -27,11 +28,12 @@ const time = preload("res://mobs/TSpider.tscn")
 const prism = preload("res://mobs/Prism.tscn")
 const floater = preload("res://mobs/Floater.tscn")
 
-
 const atk_up = preload("res://power_ups/atk_up.tscn")
 const rof_up = preload("res://power_ups/rof_up.tscn")
 const spd_up = preload("res://power_ups/spd_up.tscn")
 const hp_up = preload("res://power_ups/hp_up.tscn")
+
+const coin = preload("res://power_ups/coin.tscn")
 
 const power_ups = [atk_up, rof_up, spd_up, hp_up]
 
@@ -180,6 +182,9 @@ func populate_map():
     var power_up = power_ups[rng.rng.randi() % power_ups.size()]
     add_object(power_up, spawns)
     
+    for n in range(rng.rng.randi() % 4):
+        add_object(coin, spawns)
+    
     var mobs = []
     for n in range(pack_count):
         mobs.append_array(pack)
@@ -251,3 +256,6 @@ func _on_PlayerRoot_hp_up(max_hp):
 
 func _on_PlayerRoot_spd_up():
     emit_signal("spd_up")
+
+func _on_GameRoot_stop_play():
+    emit_signal("stop_play")
