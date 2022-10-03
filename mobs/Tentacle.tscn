@@ -55,7 +55,7 @@ animations = [ {
 radius = 8.0
 height = 16.0
 
-[node name="Tentacle" type="Area2D"]
+[node name="Tentacle" type="KinematicBody2D"]
 z_index = 1
 collision_layer = 7
 collision_mask = 7
@@ -66,5 +66,3 @@ frames = SubResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 10 )
-
-[connection signal="body_entered" from="." to="." method="_on_Tentacle_body_entered"]

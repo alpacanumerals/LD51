@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 signal killed
 onready var play_area = get_parent()

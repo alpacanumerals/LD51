@@ -22,7 +22,13 @@ func play_battle():
     Orchestrion.set_bus("Music")
     Orchestrion.set_stream(music)
     Orchestrion.play()
-
+    
+func play_gameover():
+    var music = load("res://sounds/music/jingle_go.wav")
+    Orchestrion.set_bus("Music")
+    Orchestrion.set_stream(music)
+    Orchestrion.play()
+    
 func pause():
     Orchestrion.set_stream_paused(true)
     
