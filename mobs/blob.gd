@@ -7,7 +7,6 @@ onready var play_area = get_parent()
 
 const speed = 50
 var hp = 1
-var flashframes = 0
 
 func _ready():
     $AnimatedSprite.play()
