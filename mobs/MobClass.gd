@@ -56,20 +56,21 @@ func shoot():
 func collide():   
     for i in get_slide_count():
         var collision = get_slide_collision(i)
-        if collision.collider.has_method("player_touch"):
+        if collision.collider.has_method("player_touch") && !dead:
             collision.collider.player_touch()
             
 func mob_touch(node):
-    if node.has_method("player_touch"):
+    if node.has_method("player_touch") && !dead:
         node.player_touch()
 
 func hit():
-    hp -= player.atk_stat
-    if hp <= 0:
-        dead()
-    else:
-        sounds.sfx_hit_mob()
-        flash()
+    if !dead:
+        hp -= player.atk_stat
+        if hp <= 0:
+            dead()
+        else:
+            sounds.sfx_hit_mob()
+            flash()
     
 func dead():
     dead = true
