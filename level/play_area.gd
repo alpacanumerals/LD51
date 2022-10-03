@@ -54,7 +54,9 @@ func reset_map():
     $TileMap.draw_map()
     reset_player()
     reset_portal()
-    reset_mobs()
+    clear_mobs()
+    clear_power_ups()
+    populate_map()
     remove_bullets()
 
 func reset_player():
@@ -65,12 +67,18 @@ func reset_player():
     
     $PlayerRoot.position = Vector2(x, y)
 
-func reset_mobs():
+func clear_mobs():
     var mobs = get_tree().get_nodes_in_group(constants.MOB_GROUP)
     for mob in mobs:
         mob.call_deferred("queue_free")
     current_mobs = 0
-    
+
+func clear_power_ups():
+    var p_ups = get_tree().get_nodes_in_group(constants.POW_GROUP)
+    for p_up in p_ups:
+        p_up.call_deferred("queue_free")
+
+func populate_map():
     var spawns = $TileMap.get_mob_starts()
     
     var adj_difficulty = difficulty
@@ -84,7 +92,7 @@ func reset_mobs():
     var power_up = power_ups[rng.rng.randi() % power_ups.size()]
     add_object(power_up, spawns)
     
-    mobs = []
+    var mobs = []
     for n in range(pack_count):
         mobs.append_array(pack)
     
