@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/symbols/p_rof.png" type="Texture" id=1]
+
+[node name="PowerUpIcon" type="TextureRect"]
+margin_right = 24.0
+margin_bottom = 24.0
+texture = ExtResource( 1 )

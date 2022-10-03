@@ -5,6 +5,9 @@ signal mobs_clear
 signal map_failed
 
 signal update_health(health)
+signal atk_up
+signal rof_up
+signal spd_up
 
 const tentacle = preload("res://mobs/Tentacle.tscn")
 const blob = preload("res://mobs/Blob.tscn")
@@ -154,10 +157,10 @@ func _on_MagicCircle_circle_triggered():
     emit_signal("map_clear")
 
 func _on_PlayerRoot_atk_up():
-    print("atk up!")
+    emit_signal("atk_up")
 
 func _on_PlayerRoot_rof_up():
-    print("rof up!")
+    emit_signal("rof_up")
 
 func _on_PlayerRoot_player_dead():
     emit_signal("map_failed")
