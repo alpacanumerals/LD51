@@ -27,11 +27,12 @@ const time = preload("res://mobs/TSpider.tscn")
 const prism = preload("res://mobs/Prism.tscn")
 const floater = preload("res://mobs/Floater.tscn")
 
-
 const atk_up = preload("res://power_ups/atk_up.tscn")
 const rof_up = preload("res://power_ups/rof_up.tscn")
 const spd_up = preload("res://power_ups/spd_up.tscn")
 const hp_up = preload("res://power_ups/hp_up.tscn")
+
+const coin = preload("res://power_ups/coin.tscn")
 
 const power_ups = [atk_up, rof_up, spd_up, hp_up]
 
@@ -179,6 +180,9 @@ func populate_map():
     
     var power_up = power_ups[rng.rng.randi() % power_ups.size()]
     add_object(power_up, spawns)
+    
+    for n in range(rng.rng.randi() % 4):
+        add_object(coin, spawns)
     
     var mobs = []
     for n in range(pack_count):
