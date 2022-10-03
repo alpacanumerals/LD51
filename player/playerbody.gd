@@ -12,6 +12,7 @@ signal atk_up
 signal rof_up
 signal player_dead
 signal health_update(hp)
+signal score_up(score)
 
 var rof_base = 8
 var rof = 8
@@ -145,6 +146,10 @@ func rof_up():
     if rof > 1:
         rof -= 1
         emit_signal("rof_up")
+        
+func get_coin():
+    emit_signal("score_up", 10)
+    sounds.sfx_pickup_coin()
 
 func flash():
     $AnimatedSprite.modulate = Color(1,0,0,1)
