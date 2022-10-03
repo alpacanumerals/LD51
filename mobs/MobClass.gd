@@ -56,7 +56,7 @@ func mob_touch(node):
         node.player_touch()
 
 func hit():
-    hp -= 1
+    hp -= player.atk_stat
     if hp <= 0:
         dead()
     else:

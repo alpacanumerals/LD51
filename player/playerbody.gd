@@ -17,12 +17,14 @@ var rof_base = 8
 var rof = 8
 var rof_count = 0
 var acc = 0.1
+var atk_stat = 1
 
 const bullet_base = 400
 var bullet_speed = 400
-var bullet_increment = 200
+var bullet_increment = 100
 
-const max_hp = 3
+const hp_base = 3
+var max_hp = 3
 var hp = max_hp
 
 const iframes = 30
@@ -134,14 +136,15 @@ func player_touch():
         player_damage()
 
 func atk_up():
-    bullet_speed += bullet_increment
-    emit_signal("atk_up")
+    if atk_stat <= 10:
+        atk_stat += 1
+        bullet_speed += bullet_increment
+        emit_signal("atk_up")
 
 func rof_up():
-    rof -= 1
-    if rof < 2:
-        rof = 2
-    emit_signal("rof_up")
+    if rof > 1:
+        rof -= 1
+        emit_signal("rof_up")
 
 func flash():
     $AnimatedSprite.modulate = Color(1,0,0,1)
