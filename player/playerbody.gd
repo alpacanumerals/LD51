@@ -109,7 +109,7 @@ func set_animation(direction_to_mouse):
         $HitHalo.set_z_index(0)
 
 func player_damage(damage):
-    #hp -= damage
+    hp -= damage
     emit_signal("health_update", hp)
     if hp <= 0:
         player_kill()
