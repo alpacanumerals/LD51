@@ -64,8 +64,8 @@ __meta__ = {
 "_editor_description_": ""
 }
 speed = 120
-hp = 4
-points = 5
+hp = 5
+points = 3
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 9 )

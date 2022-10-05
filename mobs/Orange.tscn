@@ -72,8 +72,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
-hp = 10
-points = 4
+hp = 8
+points = 5
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 13 )

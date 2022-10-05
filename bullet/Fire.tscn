@@ -38,7 +38,7 @@ radius = 5.0
 z_index = 1
 collision_layer = 4
 script = ExtResource( 2 )
-speed = 300
+speed = 250
 damage = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

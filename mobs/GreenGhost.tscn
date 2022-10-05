@@ -54,7 +54,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
-speed = 225
+speed = 200
 hp = 3
 acc = 0.11
 shot_interval = 1.0

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://sprites/mobs/mob_j.png" type="Texture" id=1]
 [ext_resource path="res://mobs/MobClass.gd" type="Script" id=2]
+[ext_resource path="res://bullet/Bubble.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -57,9 +58,11 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": ""
 }
-hp = 40
+hp = 36
+acc = 0.08
+bullet = ExtResource( 3 )
 shooty = true
-points = 9
+points = 12
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 5.96046e-08, -10 )

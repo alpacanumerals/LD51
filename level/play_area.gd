@@ -42,36 +42,63 @@ var current_mobs
 
 const pack_1 = [tentacle,tentacle]
 const pack_2 = [blob,blob]
-const pack_3 = [dome,dome]
-const pack_4 = [blob,blob,blob]
-const pack_5 = [tentacle,tentacle,tentacle]
-const pack_6 = [dome,dome,dome]
-const pack_7 = [blob,blob,tentacle,tentacle]
-const pack_8 = [blob,blob,dome,dome]
-const pack_9 = [tentacle,tentacle,dome,dome]
-const pack_10 = [blob,tentacle,dome]
-
-const pack_11 = [orange,orange,blob,blob,blob,blob,dome,dome]
-const pack_12 = [orange,orange,blob,blob,dome,dome,dome,dome]
-const pack_13 = [amogus,amogus,tentacle,tentacle,dome,dome,dome,dome]
-const pack_14 = [flower,flower,tentacle,tentacle,blob,blob,blob,blob]
-const pack_15 = [ghost,ghost]
-const pack_16 = [ghost,ghost,ghost]
-const pack_17 = [amogus,amogus]
+const pack_3 = [blob,blob,blob]
+const pack_4 = [blob,tentacle]
+const pack_5 = [dome,dome,dome]
+const pack_6 = [tentacle,dome]
+const pack_7 = [blob,dome]
+const pack_8 = [dome,dome]
+const pack_9 = [orange,blob,blob]
+const pack_10 = [orange,dome,dome]
+const pack_11 = [orange,blob,blob,dome]
+const pack_12 = [orange,blob,dome,dome]
+const pack_13 = [amogus,tentacle,dome,dome]
+const pack_13a = [amogus,tentacle,tentacle,dome]
+const pack_14 = [flower,amogus,amogus,amogus]
+const pack_14a = [flower,flower,amogus,amogus]
+const pack_14x = [flower,flower,orange,orange]
+const pack_14b = [orange,flower,flower,amogus,amogus]
+const pack_14c = [flower,flower,flower,amogus,amogus]
+const pack_15 = [ghost,ghost,ghost,ghost]
+const pack_16 = [ghost,ghost,amogus,amogus]
+const pack_16a = [orange,ghost,ghost,amogus]
+const pack_16b = [ghost,amogus,amogus,amogus]
+const pack_17 = [orange,amogus,amogus]
 const pack_18 = [amogus,amogus,amogus]
-const pack_19 = [orange,orange,orange]
-const pack_20 = [flower,flower,flower]
-
-const pack_21 = [tendrils,tendrils]
-const pack_22 = [tendrils,tendrils,tendrils]
+const pack_19a = [orange,flower,amogus,amogus]
+const pack_19b = [orange,flower,ghost,]
+const pack_19c = [orange,ghost,amogus]
+const pack_19d = [flower,ghost,amogus]
+const pack_20a = [flower,amogus]
+const pack_20b = [flower,ghost]
+const pack_20c = [flower,orange]
+const pack_20d = [orange,amogus]
+const pack_20e = [orange,ghost]
+const pack_20f = [ghost,ghost]
+const pack_21 = [tendrils,ghost,amogus,amogus]
+const pack_21a = [tendrils,flower,amogus,amogus]
+const pack_21b = [tendrils,ghost,ghost,flower]
+const pack_22 = [tendrils,ghost,ghost]
+const pack_22a = [tendrils,flower,flower]
+const pack_22b = [tendrils,tendrils,ghost]
+const pack_22c = [tendrils,tendrils,flower]
 const pack_23 = [time,time]
-const pack_24 = [time,time,time]
-const pack_25 = [prism]
-const pack_26 = [prism,prism]
-const pack_27 = [prism,prism,prism]
-const pack_28 = [floater]
-const pack_29 = [floater,floater]
-const pack_30 = [floater,floater,floater]
+const pack_24 = [tendrils,time,time]
+const pack_25 = [tendrils,ghost,ghost]
+const pack_25b = [tendrils,ghost]
+const pack_25c = [tendrils,time]
+const pack_26 = [prism,tendrils,tendrils,tendrils,tendrils,time,time,time]
+const pack_27 = [prism,tendrils,ghost,ghost]
+const pack_27a = [prism,tendrils,ghost,time]
+const pack_28 = [prism,tendrils]
+const pack_29 = [floater,prism,tendrils,time,time,time,time,time]
+const pack_30 = [floater,tendrils,tendrils,time,time,time,time,time]
+const pack_31 = [floater,prism,prism,time,time,time,time,time]
+const pack_32 = [tendrils]
+const pack_33 = [floater,tendrils,tendrils,time,time,time]
+const pack_34 = [floater,prism,prism,time,time,time]
+const pack_35 = [floater]
+const pack_36 = [floater,prism,tendrils,time]
 
 # this is a list of encounters
 # each encounter is in the format [number, list]
@@ -82,46 +109,47 @@ const pack_30 = [floater,floater,floater]
 const encounters = [[0, [[]]], # floor 0 (unused)
     [1, [pack_1]], # floor 1
     [1, [pack_2]], # floor 2
-    [1, [pack_4]], # floor 3
-    [1, [pack_7]], # floor 4
-    [1, [pack_6]],
-    [1, [pack_8, pack_9, pack_10]],
-    [2, [pack_1,pack_2,pack_3]],
-    [2, [pack_1,pack_2,pack_3,pack_4,pack_5,pack_6]],
-    [2, [pack_4,pack_5,pack_6,pack_7,pack_8,pack_9]],
-    [3, [pack_4,pack_5,pack_6,pack_10]], #10
-    [1, [pack_11,pack_12]],
-    [2, [pack_7,pack_8,pack_9,pack_19]],
-    [1, [pack_13]],
-    [2, [pack_17,pack_18,pack_19]],
-    [1, [pack_14]],
-    [4, [pack_7,pack_8,pack_9]],
-    [2, [pack_14, pack_20]],
-    [3, [pack_15,pack_17,pack_18,pack_19,pack_20]],
-    [3, [pack_15,pack_16,pack_17,pack_18,pack_19,pack_20]],
-    [3, [pack_16,pack_18,pack_19,pack_20]], #20
-    [3, [pack_16,pack_18,pack_19,pack_20,pack_21]],
-    [3, [pack_16,pack_18,pack_20,pack_21,pack_22]],
-    [4, [pack_23,pack_24]],
-    [3, [pack_16,pack_20,pack_21,pack_22,pack_23,pack_24]],
-    [4, [pack_20,pack_25]],
-    [3, [pack_16,pack_22,pack_24,pack_25,pack_26]],
-    [3, [pack_16,pack_22,pack_24,pack_25,pack_26,pack_27]],
-    [3, [pack_26,pack_27]],
-    [3, [pack_16,pack_22,pack_24,pack_26,pack_27]],
-    [3, [pack_22,pack_24,pack_26,pack_27,pack_28]], #30	
-    [3, [pack_22,pack_24,pack_27,pack_28]],
-    [5, [pack_16]],
-    [4, [pack_22]],
-    [3, [pack_22,pack_24,pack_27,pack_29]],
-    [4, [pack_27]],
-    [4, [pack_24,pack_27,pack_29]],
-    [4, [pack_27,pack_29]],
-    [4, [pack_27,pack_30]],
-    [4, [pack_30]],
-    [5, [pack_30]], #40
+    [1, [pack_3]], # floor 3
+    [2, [pack_4]], # floor 4
+    [1, [pack_5]],
+    [2, [pack_6,pack_7]],
+    [2, [pack_1,pack_2,pack_8]],
+    [3, [pack_1,pack_2,pack_8]],
+    [3, [pack_4,pack_6,pack_7]],
+    [4, [pack_4,pack_6,pack_7]], #10
+    [2, [pack_11,pack_12]],
+    [3, [pack_9,pack_10]],
+    [2, [pack_13,pack_13a]], #13
+    [3, [pack_18]],
+    [3, [pack_17]], #15
+    [2, [pack_14]], #16
+    [2, [pack_14a,pack_14x]], #17
+    [2, [pack_14b,pack_14c]],
+    [2, [pack_15]],
+    [3, [pack_16,pack_16a,pack_16b]], #20
+    [5, [pack_20a,pack_20b,pack_20d,pack_20e,pack_20f]],
+    [3, [pack_19a,pack_19b,pack_19c,pack_19d]], #22
+    [2, [pack_21,pack_21a,pack_21b]], #23
+    [3, [pack_22,pack_22a]],
+    [3,	[pack_22b,pack_22c]],
+    [4, [pack_23]], #26
+    [3, [pack_24,pack_25]],
+    [4, [pack_24,pack_25]],
+    [5, [pack_25b,pack_25c]],
+    [6, [pack_23]], #30	
+    [1, [pack_26]], #31
+    [3, [pack_27,pack_27a]],
+    [5, [pack_28]],
+    [8, [pack_23]],
+    [1, [pack_29,pack_30,pack_31]], #35
+    [2, [pack_33,pack_34]],
+    [11, [pack_32]], #37 dps check
+    [10, [pack_23]], #38 kronii check
+    [3, [pack_36]],
+    [8, [pack_35]], #40
+    [12, [pack_35]],
     ]
-
+    
 func _ready():
     reset_map()
 
