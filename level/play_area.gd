@@ -95,8 +95,8 @@ const pack_29 = [floater,prism,tendrils,time,time,time,time,time]
 const pack_30 = [floater,tendrils,tendrils,time,time,time,time,time]
 const pack_31 = [floater,prism,prism,time,time,time,time,time]
 const pack_32 = [tendrils]
-const pack_33 = [floater,tendrils,tendrils,time,time,time]
-const pack_34 = [floater,prism,prism,time,time,time]
+const pack_33 = [floater,tendrils,time,time,time,time]
+const pack_34 = [floater,prism,time,time,time,time]
 const pack_35 = [floater]
 const pack_36 = [floater,prism,tendrils,time]
 
@@ -143,7 +143,7 @@ const encounters = [[0, [[]]], # floor 0 (unused)
     [8, [pack_23]],
     [1, [pack_29,pack_30,pack_31]], #35
     [2, [pack_33,pack_34]],
-    [11, [pack_32]], #37 dps check
+    [10, [pack_32]], #37 dps check
     [10, [pack_23]], #38 kronii check
     [3, [pack_36]],
     [8, [pack_35]], #40
